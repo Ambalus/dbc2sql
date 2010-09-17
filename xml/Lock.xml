@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="Lock" format="niiiiiiiiiiiiiiiiiiiiiiiixxxxxxxx">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="8" name="type" type="uint32" key="0" />
+	<field id="9" count="8" name="Lock_Properties" type="uint32" key="0" />
+	<field id="17" count="8" name="Required_Skill" type="uint32" key="0" />
+	<field id="25" count="8" name="Action" type="unknown" key="0" />
+</file>

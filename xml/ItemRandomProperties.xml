@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="ItemRandomProperties" format="nxiiiiissssssssssssssssx">
+	<field id="0" count="1" name="id" type="uint32" key="0" />
+	<field id="1" count="1" name="internalName" type="unknown" key="0" />
+	<field id="2" count="5" name="enchant_id" type="uint32" key="0" />
+	<field id="7" count="16" name="nameSuffix" type="string" key="0" />
+	<field id="23" count="1" name="unk23" type="unknown" key="0" />
+</file>

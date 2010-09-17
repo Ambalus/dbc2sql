@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="Achievement" format="niixssssssssssssssssxxxxxxxxxxxxxxxxxxiixixxxxxxxxxxxxxxxxxxii">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="factionFlag" type="uint32" key="0" />
+	<field id="2" count="1" name="mapID" type="uint32" key="0" />
+	<field id="3" count="1" name="parentAchievement" type="unknown" key="0" />
+	<field id="4" count="16" name="name" type="string" key="0" />
+	<field id="20" count="1" name="name_flags" type="unknown" key="0" />
+	<field id="21" count="16" name="description" type="unknown" key="0" />
+	<field id="37" count="1" name="desc_flags" type="unknown" key="0" />
+	<field id="38" count="1" name="categoryId" type="uint32" key="0" />
+	<field id="39" count="1" name="points" type="uint32" key="0" />
+	<field id="40" count="1" name="OrderInCategory" type="unknown" key="0" />
+	<field id="41" count="1" name="flags" type="uint32" key="0" />
+	<field id="42" count="1" name="icon" type="unknown" key="0" />
+	<field id="43" count="16" name="titleRewarrd" type="unknown" key="0" />
+	<field id="59" count="1" name="titleReward_flags" type="unknown" key="0" />
+	<field id="60" count="1" name="count" type="uint32" key="0" />
+	<field id="61" count="1" name="refAchievement" type="uint32" key="0" />
+</file>

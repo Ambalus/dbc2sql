@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="CharTitles" format="nxssssssssssssssssxxxxxxxxxxxxxxxxxxi">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="unk1" type="unknown" key="0" />
+	<field id="2" count="16" name="name" type="string" key="0" />
+	<field id="18" count="1" name="unk18" type="unknown" key="0" />
+	<field id="19" count="16" name="unk_name" type="unknown" key="0" />
+	<field id="35" count="1" name="unk35" type="unknown" key="0" />
+	<field id="36" count="1" name="bit_index" type="uint32" key="0" />
+</file>

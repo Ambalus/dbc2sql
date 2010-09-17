@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="SpellShapeshiftForm" format="nxxxxxxxxxxxxxxxxxxiixixxxxxxxxxxxx">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="buttonPosition" type="unknown" key="0" />
+	<field id="2" count="16" name="name" type="unknown" key="0" />
+	<field id="18" count="1" name="nameFlags" type="unknown" key="0" />
+	<field id="19" count="1" name="flags1" type="uint32" key="0" />
+	<field id="20" count="1" name="creatureType" type="uint32" key="0" />
+	<field id="21" count="1" name="unk21" type="unknown" key="0" />
+	<field id="22" count="1" name="attackSpeed" type="uint32" key="0" />
+	<field id="23" count="1" name="modelID_A" type="unknown" key="0" />
+	<field id="24" count="1" name="modelID_H" type="unknown" key="0" />
+	<field id="25" count="1" name="unk25" type="unknown" key="0" />
+	<field id="26" count="1" name="unk26" type="unknown" key="0" />
+	<field id="27" count="8" name="spellId" type="unknown" key="0" />
+</file>

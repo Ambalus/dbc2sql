@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="SpellItemEnchantment" format="nxiiiiiixxxiiissssssssssssssssxiiiixxx">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="charges" type="unknown" key="0" />
+	<field id="2" count="3" name="type" type="uint32" key="0" />
+	<field id="5" count="3" name="amount" type="uint32" key="0" />
+	<field id="8" count="3" name="amount2" type="unknown" key="0" />
+	<field id="11" count="3" name="spellid" type="uint32" key="0" />
+	<field id="14" count="16" name="description" type="string" key="0" />
+	<field id="30" count="1" name="unk30" type="unknown" key="0" />
+	<field id="31" count="1" name="descriptionFlags" type="uint32" key="0" />
+	<field id="32" count="1" name="aura_id" type="uint32" key="0" />
+	<field id="33" count="1" name="slot" type="uint32" key="0" />
+	<field id="34" count="1" name="GemID" type="uint32" key="0" />
+	<field id="35" count="1" name="EnchantmentCondition" type="unknown" key="0" />
+	<field id="36" count="1" name="requiredSkill" type="unknown" key="0" />
+	<field id="37" count="1" name="requiredSkillValue" type="unknown" key="0" />
+</file>

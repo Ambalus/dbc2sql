@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="Emotes" format="nsxiiix">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="Name" type="string" key="0" />
+	<field id="2" count="1" name="AnimationId" type="unknown" key="0" />
+	<field id="3" count="1" name="Flags" type="uint32" key="0" />
+	<field id="4" count="1" name="EmoteType" type="uint32" key="0" />
+	<field id="5" count="1" name="UnitStandState" type="uint32" key="0" />
+	<field id="6" count="1" name="SoundId" type="unknown" key="0" />
+</file>

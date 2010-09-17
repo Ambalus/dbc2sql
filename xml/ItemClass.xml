@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="ItemClass" format="xxssssssssssxxxxxxxx">
+	<field id="0" count="1" name="classID" type="unknown" key="1" />
+	<field id="1" count="1" name="unk1" type="unknown" key="0" />
+	<field id="2" count="1" name="unk2" type="string" key="0" />
+	<field id="3" count="9" name="classNmae" type="string" key="0" />
+	<field id="12" count="1" name="unk12" type="unknown" key="0" />
+	<field id="13" count="1" name="unk13" type="unknown" key="0" />
+	<field id="14" count="1" name="unk14" type="unknown" key="0" />
+	<field id="15" count="1" name="unk15" type="unknown" key="0" />
+	<field id="16" count="1" name="unk16" type="unknown" key="0" />
+	<field id="17" count="1" name="unk17" type="unknown" key="0" />
+	<field id="18" count="1" name="unk18" type="unknown" key="0" />
+	<field id="19" count="1" name="unk19" type="unknown" key="0" />
+</file>

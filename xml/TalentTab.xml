@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="TalentTab" format="nxxxxxxxxxxxxxxxxxxxiiix">
+	<field id="0" count="1" name="TalentTabID" type="uint32" key="0" />
+	<field id="1" count="16" name="name" type="unknown" key="0" />
+	<field id="17" count="1" name="unk17" type="unknown" key="0" />
+	<field id="18" count="1" name="spellicon" type="unknown" key="0" />
+	<field id="19" count="1" name="unk19" type="unknown" key="0" />
+	<field id="20" count="1" name="ClassMask" type="uint32" key="0" />
+	<field id="21" count="1" name="petTalentMask" type="uint32" key="0" />
+	<field id="22" count="1" name="tabpage" type="uint32" key="0" />
+	<field id="23" count="1" name="internalname" type="unknown" key="0" />
+</file>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="SpellRange" format="nffffxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="minRange" type="float" key="0" />
+	<field id="2" count="1" name="minRangeFriendly" type="float" key="0" />
+	<field id="3" count="1" name="maxRange" type="float" key="0" />
+	<field id="4" count="1" name="maxRangeFriendly" type="float" key="0" />
+	<field id="5" count="1" name="flags" type="unknown" key="0" />
+	<field id="6" count="16" name="name" type="unknown" key="0" />
+	<field id="22" count="1" name="nameFlags" type="unknown" key="0" />
+	<field id="23" count="16" name="ShortName" type="unknown" key="0" />
+	<field id="39" count="1" name="nameFlags_2" type="unknown" key="0" />
+</file>

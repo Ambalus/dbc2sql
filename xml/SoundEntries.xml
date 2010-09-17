@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="SoundEntries" format="nxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="Type" type="unknown" key="0" />
+	<field id="2" count="1" name="InternalName" type="unknown" key="0" />
+	<field id="3" count="10" name="FileName" type="unknown" key="0" />
+	<field id="13" count="10" name="Unk13" type="unknown" key="0" />
+	<field id="23" count="1" name="Path" type="unknown" key="0" />
+	<field id="24" count="1" name="unk24" type="unknown" key="0" />
+	<field id="25" count="1" name="unk25" type="unknown" key="0" />
+	<field id="26" count="1" name="unk26" type="unknown" key="0" />
+	<field id="27" count="1" name="unk27" type="unknown" key="0" />
+	<field id="28" count="1" name="unk28" type="unknown" key="0" />
+	<field id="29" count="1" name="unk29" type="unknown" key="0" />
+</file>

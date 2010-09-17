@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="ScalingStatValues" format="iniiiiiiiiiiiiiiiiixiiii">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="Level" type="uint32" key="0" />
+	<field id="2" count="4" name="ssdMultiplier" type="uint32" key="0" />
+	<field id="6" count="4" name="armorMod" type="uint32" key="0" />
+	<field id="10" count="6" name="dpsMod" type="uint32" key="0" />
+	<field id="16" count="1" name="spellBonus" type="uint32" key="0" />
+	<field id="17" count="1" name="ssdMultiplier2" type="uint32" key="0" />
+	<field id="18" count="1" name="ssdMultiplier3" type="uint32" key="0" />
+	<field id="19" count="1" name="unk19" type="unknown" key="0" />
+	<field id="20" count="4" name="armorMod2" type="uint32" key="0" />
+</file>

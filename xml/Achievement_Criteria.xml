@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="Achievement_Criteria" format="niiiiiiiixxxxxxxxxxxxxxxxxiixix">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="referredAchievement" type="uint32" key="0" />
+	<field id="2" count="1" name="requiredType" type="uint32" key="0" />
+	<field id="3" count="1" name="unk3" type="uint32" key="0" />
+	<field id="4" count="1" name="unk4" type="uint32" key="0" />
+	<field id="5" count="1" name="unk5" type="uint32" key="0" />
+	<field id="6" count="1" name="unk6" type="uint32" key="0" />
+	<field id="7" count="1" name="unk7" type="uint32" key="0" />
+	<field id="8" count="1" name="unk8" type="uint32" key="0" />
+	<field id="9" count="16" name="name" type="unknown" key="0" />
+	<field id="25" count="1" name="name_flags" type="unknown" key="0" />
+	<field id="26" count="1" name="completionFlag" type="uint32" key="0" />
+	<field id="27" count="1" name="groupFlag" type="uint32" key="0" />
+	<field id="28" count="1" name="unk28" type="unknown" key="0" />
+	<field id="29" count="1" name="timeLimit" type="uint32" key="0" />
+	<field id="30" count="1" name="showOrder" type="unknown" key="0" />
+</file>

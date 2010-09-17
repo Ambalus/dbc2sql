@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="CreatureDisplayInfo" format="nxxxfxxxxxxxxxxx">
+	<field id="0" count="1" name="Displayid" type="uint32" key="1" />
+	<field id="1" count="1" name="modelID" type="unknown" key="0" />
+	<field id="2" count="1" name="soundID" type="unknown" key="0" />
+	<field id="3" count="1" name="extendedDisplayInfoID" type="unknown" key="0" />
+	<field id="4" count="1" name="scale" type="float" key="0" />
+	<field id="5" count="1" name="creatureModelAlpha" type="unknown" key="0" />
+	<field id="6" count="3" name="textureVariation" type="unknown" key="0" />
+	<field id="9" count="1" name="portraitTextureName" type="unknown" key="0" />
+	<field id="10" count="1" name="sizeClass" type="unknown" key="0" />
+	<field id="11" count="1" name="bloodID" type="unknown" key="0" />
+	<field id="12" count="1" name="NPCSoundID" type="unknown" key="0" />
+	<field id="13" count="1" name="particleColorID" type="unknown" key="0" />
+	<field id="14" count="1" name="creatureGeosetData" type="unknown" key="0" />
+	<field id="15" count="1" name="objectEffectPackageID" type="unknown" key="0" />
+</file>

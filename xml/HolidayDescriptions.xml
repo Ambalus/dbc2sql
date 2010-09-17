@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="HolidayDescriptions" format="xsssssssssxxxxxxxx">
+	<field id="0" count="1" name="id" type="unknown" key="1" />
+	<field id="1" count="16" name="nmae" type="string" key="0" />
+	<field id="17" count="1" name="unk17" type="unknown" key="0" />
+</file>

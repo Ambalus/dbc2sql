@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="CharBaseInfo" format="bb">
+	<field id="0" count="1" name="class" type="uint8" key="0" />
+	<field id="1" count="1" name="race" type="uint8" key="0" />
+</file>

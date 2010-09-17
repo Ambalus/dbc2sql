@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<file name="MapDifficulty" format="niissssssssssssssssiiis">
+	<field id="0" count="1" name="id" type="uint32" key="0" />
+	<field id="1" count="1" name="MapId" type="uint32" key="0" />
+	<field id="2" count="1" name="Difficulty" type="uint32" key="0" />
+	<field id="3" count="16" name="areaTriggerText" type="string" key="0" />
+	<field id="19" count="1" name="textFlags" type="uint32" key="0" />
+	<field id="20" count="1" name="resetTime" type="uint32" key="0" />
+	<field id="21" count="1" name="maxPlayers" type="uint32" key="0" />
+	<field id="22" count="1" name="difficultyString" type="string" key="0" />
+</file>
