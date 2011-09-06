@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: Achievement_Category.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="Achievement_Category" format="ixssssssssssssssssxx">
+<file name="Achievement_Category" format="nisi">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="1" name="parentCategory" type="unknown" key="0" />
-	<field id="2" count="17" name="name" type="string" key="0" />
-	<field id="19" count="1" name="sortOrder" type="unknown" key="0" />
+	<field id="1" count="1" name="parentCategory" type="uint32" key="0" />
+	<field id="2" count="1" name="name" type="string" key="0" />
+	<field id="3" count="1" name="sortOrder" type="uint32" key="0" />
 </file>

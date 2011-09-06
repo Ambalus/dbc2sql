@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: ScalingStatValues.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="ScalingStatValues" format="iniiiiiiiiiiiiiiiiixiiii">
+<file name="ScalingStatValues" format="iniiiiiiiiiiiiiiiiiiiixxxxxxxxxxxxxxxxxxxxxxxxx">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="Level" type="uint32" key="0" />
-	<field id="2" count="4" name="ssdMultiplier" type="uint32" key="0" />
-	<field id="6" count="4" name="armorMod" type="uint32" key="0" />
-	<field id="10" count="6" name="dpsMod" type="uint32" key="0" />
-	<field id="16" count="1" name="spellBonus" type="uint32" key="0" />
-	<field id="17" count="1" name="ssdMultiplier2" type="uint32" key="0" />
-	<field id="18" count="1" name="ssdMultiplier3" type="uint32" key="0" />
-	<field id="19" count="1" name="unk19" type="unknown" key="0" />
-	<field id="20" count="4" name="armorMod2" type="uint32" key="0" />
+	<field id="2" count="6" name="dpsMod" type="uint32" key="0" />
+	<field id="8" count="1" name="spellBonus" type="uint32" key="0" />
+	<field id="9" count="5" name="ssdMultiplier" type="uint32" key="0" />
+	<field id="14" count="4" name="armorMod" type="uint32" key="0" />
+	<field id="18" count="4" name="armorMod2" type="uint32" key="0" />
+	<field id="22" count="24" name="trash" type="unknown" key="0" />
+	<field id="46" count="1" name="unk46" type="unknown" key="0" />
 </file>

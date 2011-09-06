@@ -1,7 +1,7 @@
 <?php
 
 $db_config = array(
-	'dbc_dns'		=> 'mysql://root:root@localhost:3306/dbc',
+	'dbc_dns'		=> 'mysql://root:root@localhost:3306/wow.dbc',
 	'db_encoding'	=> 'utf8',		// set encoding DB
 	'db_prefix'		=> 'dbc_',
 );

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: WorldSafeLocs.xml 2011-09-07 00:33:43  SergiK_KilleR $ -->
 
-<file name="WorldSafeLocs" format="nifffssssssssssssssssx">
-	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="1" name="map_id" type="uint32" key="0" />
-	<field id="2" count="1" name="x" type="float" key="0" />
-	<field id="3" count="1" name="y" type="float" key="0" />
-	<field id="4" count="1" name="z" type="float" key="0" />
-	<field id="5" count="16" name="name" type="string" key="0" />
-	<field id="21" count="1" name="unk21" type="unknown" key="0" />
+<file name="WorldSafeLocs" format="nifffx">
+	<field id="0" count="1" name="unk0" type="uint32" key="0" />
+	<field id="1" count="1" name="unk1" type="uint32" key="0" />
+	<field id="2" count="1" name="unk2" type="float" key="0" />
+	<field id="3" count="1" name="unk3" type="float" key="0" />
+	<field id="4" count="1" name="unk4" type="float" key="0" />
+	<field id="5" count="1" name="unk5" type="unknown" key="0" />
 </file>

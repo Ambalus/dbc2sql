@@ -12,7 +12,7 @@ include_once("core/dbc.class.php");
 			$file = $_POST['file'];
 			$dbc = new DBCparser($file);
 			$dbc->getHeader();
-
+			
 			print "<pre style=\"margin-left: 20px;margin-top: 1px;\">записей: ".$dbc->countRecords;
 			print "\nполей: ".$dbc->countFields;
 			print "\nразмер записей: ".$dbc->sizeRecord;

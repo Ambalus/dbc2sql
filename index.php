@@ -61,6 +61,7 @@ var files = new Array(<? foreach($dbcList as $id => $filename){print "'".$filena
 				<input type="checkbox" id="support"><b>&nbsp;протестировать структуру файлов</b><br />
 				<input type="checkbox" id="truncate"><b>&nbsp;удалить данные из таблиц</b><br />
 				<input type="checkbox" id="full">&nbsp;Циклическая обработка всех файлов<br />
+				<input type="checkbox" id="full_incorrect" disabled>&nbsp;Циклическая обработка некорректных файлов<br />
 				<hr />
 				</div>
 			</td></tr>

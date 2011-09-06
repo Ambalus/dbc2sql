@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: Holidays.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="Holidays" format="nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxssxxxxxxxxxxxxsxxx">
-	<field id="0" count="1" name="id" type="uint32" key="1" />
+<file name="Holidays" format="nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxsxxx">
+	<field id="0" count="1" name="unk0" type="uint32" key="0" />
 	<field id="1" count="1" name="unk1" type="unknown" key="0" />
 	<field id="2" count="1" name="unk2" type="unknown" key="0" />
 	<field id="3" count="1" name="unk3" type="unknown" key="0" />
@@ -38,8 +39,8 @@
 	<field id="34" count="1" name="unk34" type="unknown" key="0" />
 	<field id="35" count="1" name="unk35" type="unknown" key="0" />
 	<field id="36" count="1" name="unk36" type="unknown" key="0" />
-	<field id="37" count="1" name="unk37" type="string" key="0" />
-	<field id="38" count="1" name="unk38" type="string" key="0" />
+	<field id="37" count="1" name="unk37" type="unknown" key="0" />
+	<field id="38" count="1" name="unk38" type="unknown" key="0" />
 	<field id="39" count="1" name="unk39" type="unknown" key="0" />
 	<field id="40" count="1" name="unk40" type="unknown" key="0" />
 	<field id="41" count="1" name="unk41" type="unknown" key="0" />
@@ -50,8 +51,8 @@
 	<field id="46" count="1" name="unk46" type="unknown" key="0" />
 	<field id="47" count="1" name="unk47" type="unknown" key="0" />
 	<field id="48" count="1" name="unk48" type="unknown" key="0" />
-	<field id="49" count="1" name="holidayNameId" type="unknown" key="0" />
-	<field id="50" count="1" name="holidayDescriptionId" type="unknown" key="0" />
+	<field id="49" count="1" name="unk49" type="unknown" key="0" />
+	<field id="50" count="1" name="unk50" type="unknown" key="0" />
 	<field id="51" count="1" name="unk51" type="string" key="0" />
 	<field id="52" count="1" name="unk52" type="unknown" key="0" />
 	<field id="53" count="1" name="unk53" type="unknown" key="0" />

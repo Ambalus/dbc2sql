@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: NameGen.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="NameGen" format="xsxs">
-	<field id="0" count="1" name="unk0" type="unknown" key="0" />
+<file name="NameGen" format="isxi">
+	<field id="0" count="1" name="unk0" type="uint32" key="0" />
 	<field id="1" count="1" name="unk1" type="string" key="0" />
 	<field id="2" count="1" name="unk2" type="unknown" key="0" />
-	<field id="3" count="1" name="unk3" type="string" key="0" />
+	<field id="3" count="1" name="unk3" type="uint32" key="0" />
 </file>

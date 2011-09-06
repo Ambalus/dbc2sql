@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: SpellDuration.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
 <file name="SpellDuration" format="niii">
-	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="3" name="Duration" type="uint32" key="0" />
+	<field id="0" count="1" name="unk0" type="uint32" key="0" />
+	<field id="1" count="1" name="unk1" type="uint32" key="0" />
+	<field id="2" count="1" name="unk2" type="uint32" key="0" />
+	<field id="3" count="1" name="unk3" type="uint32" key="0" />
 </file>

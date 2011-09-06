@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: AnimKitConfig.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+
+<file name="AnimKitConfig" format="ni">
+	<field id="0" count="1" name="unk0" type="uint32" key="0" />
+	<field id="1" count="1" name="unk1" type="uint32" key="0" />
+</file>

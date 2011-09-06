@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: BarberShopStyle.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="BarberShopStyle" format="nissssssssssssssssissssssssssssssssifiii">
+<file name="BarberShopStyle" format="nisxfiii">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="type" type="uint32" key="0" />
-	<field id="2" count="16" name="name" type="string" key="0" />
-	<field id="18" count="1" name="name_flags" type="uint32" key="0" />
-	<field id="19" count="16" name="unk_name" type="string" key="0" />
-	<field id="35" count="1" name="unk_flags" type="uint32" key="0" />
-	<field id="36" count="1" name="CostMultiplier" type="float" key="0" />
-	<field id="37" count="1" name="race" type="uint32" key="0" />
-	<field id="38" count="1" name="gender" type="uint32" key="0" />
-	<field id="39" count="1" name="hair_id" type="uint32" key="0" />
+	<field id="2" count="1" name="name" type="string" key="0" />
+	<field id="3" count="1" name="unk_name" type="unknown" key="0" />
+	<field id="4" count="1" name="CostMultiplier" type="float" key="0" />
+	<field id="5" count="1" name="race" type="uint32" key="0" />
+	<field id="6" count="1" name="gender" type="uint32" key="0" />
+	<field id="7" count="1" name="hair_Id" type="uint32" key="0" />
 </file>

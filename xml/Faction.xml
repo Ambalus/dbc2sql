@@ -1,34 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: Faction.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="Faction" format="niiiiiiiiiiiiiiiiiixxxxssssssssssssssssxxxxxxxxxxxxxxxxxx">
+<file name="Faction" format="niiiiiiiiiiiiiiiiiiffixssx">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="1" name="reputationListID" type="uint32" key="0" />
+	<field id="1" count="1" name="unk1" type="uint32" key="0" />
 	<field id="2" count="4" name="BaseRepRaceMask" type="uint32" key="0" />
 	<field id="6" count="4" name="BaseRepClassMask" type="uint32" key="0" />
 	<field id="10" count="4" name="BaseRepValue" type="uint32" key="0" />
 	<field id="14" count="4" name="ReputationFlags" type="uint32" key="0" />
 	<field id="18" count="1" name="team" type="uint32" key="0" />
-	<field id="19" count="1" name="unk19" type="unknown" key="0" />
-	<field id="20" count="1" name="unk20" type="unknown" key="0" />
-	<field id="21" count="1" name="unk21" type="unknown" key="0" />
-	<field id="22" count="1" name="unk22" type="unknown" key="0" />
-	<field id="23" count="16" name="name" type="string" key="0" />
-	<field id="39" count="1" name="unk39" type="unknown" key="0" />
-	<field id="40" count="1" name="unk40" type="unknown" key="0" />
-	<field id="41" count="1" name="unk41" type="unknown" key="0" />
-	<field id="42" count="1" name="unk42" type="unknown" key="0" />
-	<field id="43" count="1" name="unk43" type="unknown" key="0" />
-	<field id="44" count="1" name="unk44" type="unknown" key="0" />
-	<field id="45" count="1" name="unk45" type="unknown" key="0" />
-	<field id="46" count="1" name="unk46" type="unknown" key="0" />
-	<field id="47" count="1" name="unk47" type="unknown" key="0" />
-	<field id="48" count="1" name="unk48" type="unknown" key="0" />
-	<field id="49" count="1" name="unk49" type="unknown" key="0" />
-	<field id="50" count="1" name="unk50" type="unknown" key="0" />
-	<field id="51" count="1" name="unk51" type="unknown" key="0" />
-	<field id="52" count="1" name="unk52" type="unknown" key="0" />
-	<field id="53" count="1" name="unk53" type="unknown" key="0" />
-	<field id="54" count="1" name="unk54" type="unknown" key="0" />
-	<field id="55" count="1" name="unk55" type="unknown" key="0" />
-	<field id="56" count="1" name="unk56" type="unknown" key="0" />
+	<field id="19" count="1" name="n" type="float" key="0" />
+	<field id="20" count="1" name="t" type="float" key="0" />
+	<field id="21" count="1" name="spilloverMaxRankIn" type="uint32" key="0" />
+	<field id="22" count="1" name="spilloverRank_unk" type="unknown" key="0" />
+	<field id="23" count="1" name="name" type="string" key="0" />
+	<field id="24" count="1" name="description" type="string" key="0" />
+	<field id="25" count="1" name="unk25" type="unknown" key="0" />
 </file>

@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: ItemRandomSuffix.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="ItemRandomSuffix" format="nssssssssssssssssxxiiiiiiiiii">
-	<field id="0" count="1" name="id" type="uint32" key="0" />
-	<field id="1" count="16" name="name" type="string" key="0" />
-	<field id="17" count="1" name="unk17" type="unknown" key="0" />
-	<field id="18" count="1" name="unk18" type="unknown" key="0" />
-	<field id="19" count="5" name="enchant_id" type="uint32" key="0" />
-	<field id="24" count="1" name="unk24" type="uint32" key="0" />
-	<field id="25" count="1" name="unk25" type="uint32" key="0" />
-	<field id="26" count="1" name="unk26" type="uint32" key="0" />
-	<field id="27" count="1" name="unk27" type="uint32" key="0" />
-	<field id="28" count="1" name="unk28" type="uint32" key="0" />
+<file name="ItemRandomSuffix" format="nsxiiiiiiiiii">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="nameSuffix" type="string" key="0" />
+	<field id="2" count="1" name="unk2" type="unknown" key="0" />
+	<field id="3" count="5" name="enchant_Id" type="uint32" key="0" />
+	<field id="8" count="5" name="prefix" type="uint32" key="0" />
 </file>

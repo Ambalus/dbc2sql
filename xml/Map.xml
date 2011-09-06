@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: Map.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="Map" format="nsiiissssssssssssssssxissssssssssssssssxssssssssssssssssxififfiixi">
-	<field id="0" count="1" name="MapId" type="uint32" key="1" />
+<file name="Map" format="nsiixisissififfiixix">
+	<field id="0" count="1" name="MapId" type="uint32" key="0" />
 	<field id="1" count="1" name="internalname" type="string" key="0" />
 	<field id="2" count="1" name="map_type" type="uint32" key="0" />
 	<field id="3" count="1" name="mapFlags" type="uint32" key="0" />
-	<field id="4" count="1" name="isPvP" type="uint32" key="0" />
-	<field id="5" count="16" name="name" type="string" key="0" />
-	<field id="21" count="1" name="unk21" type="unknown" key="0" />
-	<field id="22" count="1" name="linked_zone" type="uint32" key="0" />
-	<field id="23" count="16" name="hordeIntro" type="string" key="0" />
-	<field id="39" count="1" name="unk39" type="unknown" key="0" />
-	<field id="40" count="16" name="allianceIntro" type="string" key="0" />
-	<field id="56" count="1" name="unk56" type="unknown" key="0" />
-	<field id="57" count="1" name="multimap_id" type="uint32" key="0" />
-	<field id="58" count="1" name="BattlefieldMapIconScale" type="float" key="0" />
-	<field id="59" count="1" name="ghost_entrance_map" type="uint32" key="0" />
-	<field id="60" count="1" name="ghost_entrance_x" type="float" key="0" />
-	<field id="61" count="1" name="ghost_entrance_y" type="float" key="0" />
-	<field id="62" count="1" name="timeOfDayOverride" type="uint32" key="0" />
-	<field id="63" count="1" name="addon" type="uint32" key="0" />
-	<field id="64" count="1" name="unk64" type="unknown" key="0" />
-	<field id="65" count="1" name="maxPlayers" type="uint32" key="0" />
+	<field id="4" count="1" name="unk4" type="unknown" key="0" />
+	<field id="5" count="1" name="isPvP" type="uint32" key="0" />
+	<field id="6" count="1" name="name" type="string" key="0" />
+	<field id="7" count="1" name="linked_zone" type="uint32" key="0" />
+	<field id="8" count="1" name="hordeIntro" type="string" key="0" />
+	<field id="9" count="1" name="allianceIntro" type="string" key="0" />
+	<field id="10" count="1" name="multimap_Id" type="uint32" key="0" />
+	<field id="11" count="1" name="BattlefieldMapIconScale" type="float" key="0" />
+	<field id="12" count="1" name="ghost_entrance_map" type="uint32" key="0" />
+	<field id="13" count="1" name="x" type="float" key="0" />
+	<field id="14" count="1" name="y" type="float" key="0" />
+	<field id="15" count="1" name="timeOfDayOverrIde" type="uint32" key="0" />
+	<field id="16" count="1" name="addon" type="uint32" key="0" />
+	<field id="17" count="1" name="unkTime" type="unknown" key="0" />
+	<field id="18" count="1" name="maxPlayers" type="uint32" key="0" />
+	<field id="19" count="1" name="unk19" type="unknown" key="0" />
 </file>

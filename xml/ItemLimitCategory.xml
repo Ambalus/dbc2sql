@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: ItemLimitCategory.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="ItemLimitCategory" format="nsssssssssxxxxxxxxis">
+<file name="ItemLimitCategory" format="nsii">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="16" name="nmae" type="string" key="0" />
-	<field id="17" count="1" name="unk17" type="unknown" key="0" />
-	<field id="18" count="1" name="maxCount" type="uint32" key="0" />
-	<field id="19" count="1" name="mode" type="string" key="0" />
+	<field id="1" count="1" name="name" type="string" key="0" />
+	<field id="2" count="1" name="maxCount" type="uint32" key="0" />
+	<field id="3" count="1" name="mode" type="uint32" key="0" />
 </file>

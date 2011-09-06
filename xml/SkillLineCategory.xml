@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: SkillLineCategory.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="SkillLineCategory" format="xsssssssssxxxxxxxxx">
-	<field id="0" count="1" name="id" type="unknown" key="1" />
-	<field id="1" count="16" name="name" type="string" key="0" />
-	<field id="17" count="1" name="unk17" type="unknown" key="0" />
-	<field id="18" count="1" name="unk18" type="unknown" key="0" />
+<file name="SkillLineCategory" format="nsi">
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="name" type="string" key="0" />
+	<field id="2" count="1" name="displayOrder" type="uint32" key="0" />
 </file>

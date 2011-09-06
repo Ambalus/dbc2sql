@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: SoundFilter.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
 <file name="SoundFilter" format="xs">
 	<field id="0" count="1" name="unk0" type="unknown" key="0" />

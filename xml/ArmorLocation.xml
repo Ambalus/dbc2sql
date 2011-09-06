@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: ArmorLocation.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+
+<file name="ArmorLocation" format="nfffff">
+	<field id="0" count="1" name="InventoryType" type="uint32" key="1" />
+	<field id="1" count="5" name="Value" type="float" key="0" />
+</file>

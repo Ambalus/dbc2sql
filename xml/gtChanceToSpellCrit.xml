@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: gtChanceToSpellCrit.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="gtChanceToSpellCrit" format="f">
-	<field id="0" count="1" name="ratio" type="float" key="0" />
+<file name="gtChanceToSpellCrit" format="xf">
+	<field id="0" count="1" name="unk0" type="unknown" key="0" />
+	<field id="1" count="1" name="unk1" type="float" key="0" />
 </file>

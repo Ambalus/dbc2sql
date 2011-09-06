@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $id: CharStartOutfit.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
 
-<file name="CharStartOutfit" format="diiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiixxx">
+<file name="CharStartOutfit" format="diiiiiiiiiiiiiiiiiiiiiiiiixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
 	<field id="0" count="1" name="id" type="sorted" key="1" />
 	<field id="1" count="1" name="RaceClassGender" type="uint32" key="0" />
 	<field id="2" count="24" name="ItemId" type="uint32" key="0" />
-	<field id="26" count="24" name="ItemDisplayId" type="uint32" key="0" />
-	<field id="50" count="24" name="ItemInventorySlot" type="uint32" key="0" />
+	<field id="26" count="24" name="ItemDisplayId" type="unknown" key="0" />
+	<field id="50" count="24" name="ItemInventorySlot" type="unknown" key="0" />
 	<field id="74" count="1" name="unk74" type="unknown" key="0" />
 	<field id="75" count="1" name="unk75" type="unknown" key="0" />
 	<field id="76" count="1" name="unk76" type="unknown" key="0" />
+	<field id="77" count="1" name="unk77" type="unknown" key="0" />
+	<field id="78" count="1" name="unk78" type="unknown" key="0" />
 </file>

@@ -7,14 +7,17 @@
 * 0x10 	uint32 	string block size
 **/
 define('DEF_HEADER_SIZE',20);
+define('DB_TABLE_INFO','_dbc_info_');
+define('FILE_FMT','fmt.php');
+define('FILE_STRUCT','struct.php');
 
 class DBCparser
 {
 	private static $_signature = 'WDBC';
+	private static $_dir = 'dbc/';
 
-	var $error = '';
 	var $file = null;
-	var $filename = null;
+	var $name = null;
 	var $format = '';
 	var $field = null;
 	var $countRecords = 0;
@@ -23,23 +26,36 @@ class DBCparser
 	var $sizeString = 0;
 	var $formatRecordSize = 0;
 	var $isValid = false;
+	var $_STR = array(
+		'FILE_NOT_EXISTS' => 'Файл <b>%s</b> не найден',
+		'INCORRECT_SIGNATURE' => 'Заголовок файла некорректен (%s)',
+		'INCORRECT_FORMAT_FILE' => 'Ошибка в формате файла',
+		'DIFF_COUNT_FIELDS' => 'fields count diff (dbc: %d, xml: %d)',
+		'DIFF_SIZE_RECORDS' => 'Record size diff (dbc: %d, xml: %d)'
+	);
+	var $error = null;
 
-	function __construct($file){
+	function __construct($file=null){
 		global $db_config;
-		if($this->file = fopen("dbc/".$file, "rb")){
-			$ex = explode('.',$file);
-			$this->filename = $ex[0];
 
-			include_once('dbsimple/Generic.php'); // including simple conecting for DB
-			$this->DB = DbSimple_Generic::connect($db_config['dbc_dns']);
-			$this->DB->setErrorHandler("databaseErrorHandler");
-			$this->DB->setIdentPrefix($db_config['db_prefix']);
-			$this->DB->query("SET NAMES ?",$db_config['db_encoding']);
+		include_once('dbsimple/Generic.php'); // including simple conecting for DB
+		$this->DB = DbSimple_Generic::connect($db_config['dbc_dns']);
+		$this->DB->setErrorHandler("databaseErrorHandler");
+		$this->DB->setIdentPrefix($db_config['db_prefix']);
+		$this->DB->query("SET NAMES ?",$db_config['db_encoding']);
+		$this->initDB();
+
+		if($file == null)
+			return;
+
+		if($this->file = fopen(self::$_dir.$file, "rb")){
+			$ex = explode('.',$file);
+			$this->name = $ex[0];
 
 			$this->dom = new DOMDocument();
 			$this->dom->preserveWhiteSpace = false;
 			$this->dom->substituteEntities = true;
-			$xmlfile = 'xml/'.$this->filename.'.xml';
+			$xmlfile = 'xml/'.$this->name.'.xml';
 			if(file_exists($xmlfile)){
 				$this->dom->Load($xmlfile);
 				$this->XML = $this->dom->getElementsByTagName('file')->item(0);
@@ -47,7 +63,25 @@ class DBCparser
 				return;
 			}
 		}else{
-			$this->error = "<font color=\"red\">Не могу открыть файл <b>".$this->filename."</b>.</font>";
+			$this->error = sprintf($this->_STR['FILE_NOT_EXISTS'], $file);
+		}
+	}
+
+	function _set($filename = null){
+		if($filename == null)
+			trigger_error(sprintf($this->_STR['FILE_NOT_EXISTS'], $filename), E_USER_ERROR);
+
+		$this->name = $filename;
+		if($this->file = fopen(self::$_dir.$this->name.'.dbc', "rb")){
+			$row = $this->DB->selectRow("SELECT * FROM ?# WHERE `file`=?",DB_TABLE_INFO,$this->name);
+			if(isset($row['format']) && $row['format'] != ''){
+				$this->format = $row['format'];
+			}
+			if(isset($row['size_record']) && $row['size_record'] != ''){ // fix/hack
+				$this->sizeRecord = $row['size_record'];
+			}
+		}else{
+			trigger_error(sprintf($this->_STR['FILE_NOT_EXISTS'], $this->name), E_USER_ERROR);
 		}
 	}
 
@@ -55,22 +89,17 @@ class DBCparser
 		$this->header = fread($this->file, DEF_HEADER_SIZE);
 
 		if($h = substr($this->header,0,4) !== self::$_signature){
-			$text['INCORRECT_SIGNATURE'] = 'file\'s signature incorrect ( %s )';
-			$this->error = sprintf($text['INCORRECT_SIGNATURE'],$h);
+			$this->error = sprintf($this->_STR['INCORRECT_SIGNATURE'],$h);
 			return false;
 		}
+
 		$this->countRecords = base_convert(bin2hex(strrev(substr($this->header,4,4))), 16, 10);
 		$this->countFields = base_convert(bin2hex(strrev(substr($this->header,8,4))), 16, 10);
 		$this->sizeRecord = base_convert(bin2hex(strrev(substr($this->header,12,4))), 16, 10);
 		$this->sizeString = base_convert(bin2hex(strrev(substr($this->header,16,4))), 16, 10);
-		//$this->isValud = $this->isValidFormatFile();
-		$this->writeDBCInfo();
+		$this->is_valid = $this->checkSizeOf();
 
-		/*if($this->countFields*4 != $this->sizeRecord){
-			$text['INCORRECT_SIZE_BLOCK'] = 'diff size blocks (%d | %d)';
-			$this->error = sprintf($text['INCORRECT_SIZE_BLOCK'],$this->countFields*4,$this->sizeRecord);
-			return false;
-		}*/
+		$this->writeDBCInfo();
 
 		return true;
 	}
@@ -94,8 +123,7 @@ class DBCparser
 					$this->formatRecordSize += 1;
 					break;
 				default:
-					$text['INCORRECT_FORMAT_FILE'] = 'error dbc\'s format';
-					$this->error = $text['INCORRECT_FORMAT_FILE'];
+					$this->error = $this->_STR['INCORRECT_FORMAT_FILE'];
 					return false;
 					break;
 			}
@@ -165,7 +193,7 @@ class DBCparser
 					$sql .= ($i==($this->countFields-1))? " `$field` varchar(255) DEFAULT NULL\n" : " `$field` varchar(255) DEFAULT NULL,\n";
 					break;
 				default:
-					$this->error .= " Ошибка формата!!! В стоке формата присутствуют посторонние символы.";
+					$this->error = $this->_STR['INCORRECT_FORMAT_FILE'];
 					return false;
 					break;
 			}
@@ -183,8 +211,8 @@ class DBCparser
 
 		$sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		
-		$this->DB->query("DROP TABLE IF EXISTS ?#",'dbc_'.$this->filename);
-		$this->DB->query($sql,'dbc_'.$this->filename);
+		$this->DB->query("DROP TABLE IF EXISTS ?#",'dbc_'.$this->name);
+		$this->DB->query($sql,'dbc_'.$this->name);
 
 		unset($collums);
 		unset($ittr);
@@ -205,14 +233,12 @@ class DBCparser
 
 		$c = strlen($this->format);
 		if ($c != $this->countFields) {
-			$text['DIFF_COUNT_FIELDS'] = 'fields count diff (dbc: %d, xml: %d)';
-			$this->error = sprintf($text['DIFF_FIELDS_FORMAT'],$this->countFields,$c);
+			$this->error = sprintf($this->_STR['DIFF_FIELDS_FORMAT'],$this->countFields,$c);
 			return false;
 		}
 
-		if ($this->sizeRecord != $this->formatRecordSize) {
-			$text['DIFF_SIZE_RECORDS'] = 'Record size diff (dbc: %d, xml: %d)';
-			$this->error = sprintf($text['DIFF_SIZE_RECORDS'],$this->sizeRecord,$this->formatRecordSize);
+		if (!$this->checkSizeOf()) {
+			$this->error = sprintf($this->_STR['DIFF_SIZE_RECORDS'],$this->sizeRecord,$this->formatRecordSize);
 			return false;
 		}
 
@@ -226,7 +252,7 @@ class DBCparser
 		$this->createTable();
 		for ($row = 1; $row <= $this->countRecords; $row++) {
 			$this->getRecord($row,$out);
-			$this->DB->query("INSERT INTO ?# VALUES(?a)",'dbc_'.$this->filename,$out);
+			$this->DB->query("INSERT INTO ?# VALUES(?a)",'dbc_'.$this->name,$out);
 			unset($out);
 		}
 
@@ -289,12 +315,47 @@ class DBCparser
 		}
 	}
 
-	public function writeDBCInfo(){
+	public function checkSizeOf(){
+		$c = strlen($this->format);
+		// $size = 0;
+		$this->formatRecordSize = 0;
+		for($i=0;$i<$c;$i++) {
+			switch($this->format[$i]){
+				case 'i': // uint32, size 0x4
+				case 'n': // uint32, size 0x4
+				case 'f': // float, size 0x4
+				case 'd': // sorted, size 0x4
+				case 's': // string, size 0x4
+				case 'x': // unknown, size 0x4
+					// $size += 4;
+					$this->formatRecordSize += 4;
+					break;
+				case 'l': // bool, size 0x1
+				case 'X': // unknown, size 0x1			
+				case 'b': // uint8, size 0x1
+					// $size += 1;
+					$this->formatRecordSize += 1;
+					break;
+				default:  // unknown
+					$this->error = $this->_STR['INCORRECT_FORMAT_FILE'];
+					return false;
+					break;
+			}
+		}
+		if($this->formatRecordSize != $this->sizeRecord){
+			$this->error = sprintf($this->_STR['DIFF_SIZE_RECORDS'],$this->sizeRecord,$this->formatRecordSize);
+			return false;
+		}
+		return true;
+	}
+
+	private function initDB(){
 		$result = $this->DB->selectRow("ANALYZE TABLE `_dbc_info_`");
 		if($result['Msg_type'] == 'Error'){
 			$this->DB->query("
 				CREATE TABLE `_dbc_info_` (
 				  `file` varchar(120) DEFAULT NULL,
+				  `format` varchar(80) DEFAULT NULL,
 				  `valid` int(10) DEFAULT NULL,
 				  `rows` int(11) DEFAULT NULL,
 				  `columns` int(11) DEFAULT NULL,
@@ -303,12 +364,37 @@ class DBCparser
 				  PRIMARY KEY (`file`)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8
 			");
+			$this->_initDB_();
 		}
-		$this->DB->query("
-			REPLACE INTO `_dbc_info_` VALUES (?,?d,?d,?d,?d,?d)
-		",$this->filename.'.dbc',$this->isValid? 1:0,$this->countRecords,$this->countFields,$this->sizeRecord,$this->sizeString);
-		
+	}
+
+	private function writeDBCInfo(){
+		$this->initDB();
+
+		$res = $this->DB->selectRow("SELECT * FROM ?# WHERE `file`=?",DB_TABLE_INFO,$this->name);
+		if(isset($res['file'])){
+			$this->DB->query("
+				UPDATE ?# SET 
+				`valid`=?,
+				`rows`=?d,
+				`columns`=?d,
+				`size_record`=?d,
+				`size_string`=?d
+				WHERE `file`=?
+			",DB_TABLE_INFO,$this->is_valid?1:0,$this->countRecords,$this->countFields,$this->sizeRecord,$this->sizeString,$this->name);
+		}else{
+			$this->DB->query("
+				REPLACE INTO ?# VALUES (?,?,?d,?d,?d,?d,?d)
+			",DB_TABLE_INFO,$this->name,$this->format,$this->is_valid?1:0,$this->countRecords,$this->countFields,$this->sizeRecord,$this->sizeString);
+		}
 		return;
+	}
+
+	private function _initDB_(){
+		include(FILE_FMT);
+		foreach($DBCfmt as $k => $v){
+			$this->DB->query("INSERT IGNORE INTO ?#(`file`,`format`) VALUES(?,?)",DB_TABLE_INFO,$k,$v);
+		}
 	}
 
 	function __destruct(){}
