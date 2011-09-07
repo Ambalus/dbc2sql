@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: Map.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+<!-- $id: Map.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
 
 <file name="Map" format="nsiixisissififfiixix">
 	<field id="0" count="1" name="MapId" type="uint32" key="0" />
@@ -15,8 +15,8 @@
 	<field id="10" count="1" name="multimap_Id" type="uint32" key="0" />
 	<field id="11" count="1" name="BattlefieldMapIconScale" type="float" key="0" />
 	<field id="12" count="1" name="ghost_entrance_map" type="uint32" key="0" />
-	<field id="13" count="1" name="x" type="float" key="0" />
-	<field id="14" count="1" name="y" type="float" key="0" />
+	<field id="13" count="1" name="ghost_entrance_x" type="float" key="0" />
+	<field id="14" count="1" name="ghost_entrance_y" type="float" key="0" />
 	<field id="15" count="1" name="timeOfDayOverrIde" type="uint32" key="0" />
 	<field id="16" count="1" name="addon" type="uint32" key="0" />
 	<field id="17" count="1" name="unkTime" type="unknown" key="0" />

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: SkillLine.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+<!-- $id: SkillLine.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
 
 <file name="SkillLine" format="niisxix">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="categoryId" type="uint32" key="0" />
 	<field id="2" count="1" name="skillCostId" type="uint32" key="0" />
 	<field id="3" count="1" name="name" type="string" key="0" />
-	<field id="4" count="1" name="unk4" type="unknown" key="0" />
+	<field id="4" count="1" name="description" type="unknown" key="0" />
 	<field id="5" count="1" name="spellIcon" type="uint32" key="0" />
 	<field id="6" count="1" name="unk6" type="unknown" key="0" />
 </file>

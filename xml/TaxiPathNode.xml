@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: TaxiPathNode.xml 2011-09-07 00:33:43  SergiK_KilleR $ -->
+<!-- $id: TaxiPathNode.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
 
 <file name="TaxiPathNode" format="diiifffiiii">
-	<field id="0" count="1" name="unk0" type="sorted" key="0" />
-	<field id="1" count="1" name="unk1" type="uint32" key="0" />
-	<field id="2" count="1" name="unk2" type="uint32" key="0" />
-	<field id="3" count="1" name="unk3" type="uint32" key="0" />
-	<field id="4" count="1" name="unk4" type="float" key="0" />
-	<field id="5" count="1" name="unk5" type="float" key="0" />
-	<field id="6" count="1" name="unk6" type="float" key="0" />
-	<field id="7" count="1" name="unk7" type="uint32" key="0" />
-	<field id="8" count="1" name="unk8" type="uint32" key="0" />
-	<field id="9" count="1" name="unk9" type="uint32" key="0" />
-	<field id="10" count="1" name="unk10" type="uint32" key="0" />
+	<field id="0" count="1" name="id" type="sorted" key="1" />
+	<field id="1" count="1" name="path" type="uint32" key="0" />
+	<field id="2" count="1" name="index" type="uint32" key="0" />
+	<field id="3" count="1" name="mapid" type="uint32" key="0" />
+	<field id="4" count="1" name="x" type="float" key="0" />
+	<field id="5" count="1" name="y" type="float" key="0" />
+	<field id="6" count="1" name="z" type="float" key="0" />
+	<field id="7" count="1" name="actionFlag" type="uint32" key="0" />
+	<field id="8" count="1" name="delay" type="uint32" key="0" />
+	<field id="9" count="1" name="arrivalEventID" type="uint32" key="0" />
+	<field id="10" count="1" name="departureEventID" type="uint32" key="0" />
 </file>

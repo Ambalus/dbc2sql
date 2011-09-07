@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: SpellPower.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+<!-- $id: SpellPower.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
 
 <file name="SpellPower" format="diiiixx">
-	<field id="0" count="1" name="unk0" type="sorted" key="0" />
-	<field id="1" count="1" name="unk1" type="uint32" key="0" />
-	<field id="2" count="1" name="unk2" type="uint32" key="0" />
-	<field id="3" count="1" name="unk3" type="uint32" key="0" />
-	<field id="4" count="1" name="unk4" type="uint32" key="0" />
-	<field id="5" count="1" name="unk5" type="unknown" key="0" />
+	<field id="0" count="1" name="id" type="sorted" key="1" />
+	<field id="1" count="1" name="manaCost" type="uint32" key="0" />
+	<field id="2" count="1" name="manaCostPerlevel" type="uint32" key="0" />
+	<field id="3" count="1" name="ManaCostPercentage" type="uint32" key="0" />
+	<field id="4" count="1" name="manaPerSecond" type="uint32" key="0" />
+	<field id="5" count="1" name="PowerDisplayId" type="unknown" key="0" />
 	<field id="6" count="1" name="unk6" type="unknown" key="0" />
 </file>

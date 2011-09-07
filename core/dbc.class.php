@@ -7,6 +7,19 @@
 * 0x10 	uint32 	string block size
 **/
 define('DEF_HEADER_SIZE',20);
+if(!defined('INDEX_PRIMORY_KEY')){
+	define('INDEX_PRIMORY_KEY',1);
+}
+define("FT_NA",'x');       // unknown, size 0x4
+define("FT_NA_BYTE",'X');  // unknown, size 0x1
+define("FT_STRING",'s');   // char*/string, size 0x4
+define("FT_FLOAT",'f');    // float, size 0x4
+define("FT_IND",'n');      // uint32, size 0x4
+define("FT_INT",'i');      // uint32, size 0x4
+define("FT_BYTE",'b');     // uint8, size 0x1
+define("FT_SORT",'d');     // sorted, size 0x4, sorted by this field, field is not included
+define("FT_LOGIC",'l');    // bool/logical, size 0x1
+
 define('DB_TABLE_INFO','_dbc_info_');
 define('FILE_FMT','fmt.php');
 define('FILE_STRUCT','struct.php');
@@ -41,8 +54,8 @@ class DBCparser
 		include_once('dbsimple/Generic.php'); // including simple conecting for DB
 		$this->DB = DbSimple_Generic::connect($db_config['dbc_dns']);
 		$this->DB->setErrorHandler("databaseErrorHandler");
-		$this->DB->setIdentPrefix($db_config['db_prefix']);
-		$this->DB->query("SET NAMES ?",$db_config['db_encoding']);
+		// $this->DB->setLogger("databaseLogHandler");
+		// $this->DB->setIdentPrefix($db_config['db_prefix']);
 		$this->initDB();
 
 		if($file == null)
@@ -74,12 +87,12 @@ class DBCparser
 		$this->name = $filename;
 		if($this->file = fopen(self::$_dir.$this->name.'.dbc', "rb")){
 			$row = $this->DB->selectRow("SELECT * FROM ?# WHERE `file`=?",DB_TABLE_INFO,$this->name);
-			if(isset($row['format']) && $row['format'] != ''){
+			// if(isset($row['format']) && $row['format'] != ''){
 				$this->format = $row['format'];
-			}
-			if(isset($row['size_record']) && $row['size_record'] != ''){ // fix/hack
+			// }
+			// if(isset($row['size_record']) && $row['size_record'] > 0){ // fix/hack
 				$this->sizeRecord = $row['size_record'];
-			}
+			// }
 		}else{
 			trigger_error(sprintf($this->_STR['FILE_NOT_EXISTS'], $this->name), E_USER_ERROR);
 		}
@@ -109,17 +122,17 @@ class DBCparser
 		$c = strlen($this->format);
 		for($i=0;$i<$c;$i++) {
 			switch($this->format[$i]){
-				case 'x':
-				case 's':
-				case 'f':
-				case 'i':
-				case 'd':
-				case 'n':
+				case FT_NA:
+				case FT_STRING:
+				case FT_FLOAT:
+				case FT_INT:
+				case FT_SORT:
+				case FT_IND:
 					$this->formatRecordSize += 4;
 					break;
-				case 'X':
-				case 'b':
-				case 'l':
+				case FT_NA_BYTE:
+				case FT_BYTE:
+				case FT_LOGIC:
 					$this->formatRecordSize += 1;
 					break;
 				default:
@@ -130,9 +143,20 @@ class DBCparser
 		}
 		return true;
 	}
-	
+
+	public function checkSizeOf(){
+		$this->getFormatRecord();
+
+		if($this->formatRecordSize != $this->sizeRecord){
+			$this->error = sprintf($this->_STR['DIFF_SIZE_RECORDS'],$this->sizeRecord,$this->formatRecordSize);
+			return false;
+		}
+		return true;
+	}
+
 	private function getFields(){
 		$this->field = array();
+		
 		foreach($this->XML->getElementsByTagName('field') as $field){
 			$this->field[$field->getAttribute('id')] = array(
 				'count' => (int) $field->getAttribute('count'),
@@ -150,21 +174,22 @@ class DBCparser
 		if(!$this->countFields)
 			return false;
 
+		// "CREATE TABLE ?# (
 		$sql = "CREATE TABLE ?# (\n";
 		$this->getFields(); // return $this->fields
 
 		$collums = 0;
 		$ittr = 0;
+		$pkey = '';
 		for($i=0; $i<$this->countFields; $i++) {
-			if($collums>1 && $ittr==$collums){
+			if($collums>1 && $ittr==$collums){ // reset counters
 				$collums = 0;
 				$ittr = 0;
 			}
 
 			$field 	= $this->field[$i]['name'];
-			if($this->field[$i]['key']==1){ // prymary key
-				$pkey[] = $field;
-			}
+			if($this->field[$i]['key']==INDEX_PRIMORY_KEY) // prymory key
+				$pkey = $field;
 
 			if($this->field[$i]['count']>1){
 				$collums = $this->field[$i]['count'];
@@ -178,38 +203,45 @@ class DBCparser
 				$collums = 0;
 				$ittr = 0;
 			}
+			$sql .= "`$field`";
 			switch($this->format[$i]){
-				case 'f':
-				case 'i':
-				case 'd':
-				case 'b':
-				case 'l':
-				case 'x':
-				case 'X':
-				case 'n':
-					$sql .= ($i==($this->countFields-1))? " `$field` int(12) DEFAULT NULL\n" : " `$field` int(12) DEFAULT NULL,\n";
+				case FT_FLOAT:
+					$sql .= " FLOAT NOT NULL DEFAULT '0'";
 					break;
-				case 's':
-					$sql .= ($i==($this->countFields-1))? " `$field` varchar(255) DEFAULT NULL\n" : " `$field` varchar(255) DEFAULT NULL,\n";
+				case FT_IND:
+					$sql .= " INT UNSIGNED NOT NULL DEFAULT '0'";
+					break;
+				case FT_NA:
+				case FT_INT:
+					$sql .= " INT NOT NULL DEFAULT '0'";
+					break;
+				case FT_SORT:
+					$sql .= " DOUBLE NOT NULL DEFAULT '0'";
+					break;
+				case FT_NA_BYTE:
+				case FT_LOGIC:
+					$sql .= " TINYINT UNSIGNED NOT NULL DEFAULT '0'";
+					break;
+				case FT_BYTE:
+					$sql .= " SMALLINT UNSIGNED NOT NULL DEFAULT '0'";
+					break;
+				case FT_STRING:
+					$sql .= " TEXT NOT NULL";
 					break;
 				default:
 					$this->error = $this->_STR['INCORRECT_FORMAT_FILE'];
 					return false;
 					break;
 			}
+			$sql .= ($i+1==$this->countFields)? "\n":",\n";
 		}
 
-		if(!empty($pkey)){
-			$int=0;
-			$sql .= ",\nPRIMARY KEY (";
-			foreach($pkey as $keyID){
-				$sql .= ($int == (count($pkey)-1))? "`$keyID`" : "`$keyID`,";
-				$int++;
-			}
-			$sql .= ")\n";
+		
+		if($pkey != ''){
+			$sql .= ", PRIMARY KEY (`$pkey`)\n";
 		}
 
-		$sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		$sql .= sprintf(") ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='Export of %s';",$this->name);
 		
 		$this->DB->query("DROP TABLE IF EXISTS ?#",'dbc_'.$this->name);
 		$this->DB->query($sql,'dbc_'.$this->name);
@@ -217,12 +249,9 @@ class DBCparser
 		unset($collums);
 		unset($ittr);
 		unset($sql);
-		unset($int);
 		unset($field);
 		unset($temp_f);
-		unset($key);
 		unset($pkey);
-		unset($keyID);
 		unset($i);
 	}
 
@@ -263,24 +292,24 @@ class DBCparser
 	public function getRecord($row,&$out){
 		for ($cell = 1; $cell <= $this->countFields; $cell++) {
 			switch ($this->format[$cell-1]) {
-				case 'x': //unknown 4 bytes
-				case 'i': //unsigned integer 4 bytes
-				case 'd': //order unknown 4 bytes
-				case 'n': //order unsigned integer 4 bytes
+				case FT_NA:
+				case FT_INT:
+				case FT_IND:
 					$t = unpack("V", fread($this->file, 4));
 					$out[$cell] = $t[1];
 					break;
-				case 'f': //float 4 bytes
+				case FT_SORT:
+				case FT_FLOAT:
 					$t = unpack("f", fread($this->file, 4));
 					$out[$cell] = $t[1];
 					break;
-				case 'X': //unknown 1 byte
-				case 'b': //unsigned integer 1 byte
-				case 'l': //boolean 1 byte
+				case FT_NA_BYTE:
+				case FT_BYTE:
+				case FT_LOGIC:
 					$t = unpack("C", fread($this->file, 1));
 					$out[$cell] = $t[1];
 					break;
-				case 's': //string pointer 4 bytes
+				case FT_STRING:
 					$t = unpack("V", fread($this->file, 4));
 					$ptr = $t[1];
 					$s = "";
@@ -313,40 +342,6 @@ class DBCparser
 					break;
 			}
 		}
-	}
-
-	public function checkSizeOf(){
-		$c = strlen($this->format);
-		// $size = 0;
-		$this->formatRecordSize = 0;
-		for($i=0;$i<$c;$i++) {
-			switch($this->format[$i]){
-				case 'i': // uint32, size 0x4
-				case 'n': // uint32, size 0x4
-				case 'f': // float, size 0x4
-				case 'd': // sorted, size 0x4
-				case 's': // string, size 0x4
-				case 'x': // unknown, size 0x4
-					// $size += 4;
-					$this->formatRecordSize += 4;
-					break;
-				case 'l': // bool, size 0x1
-				case 'X': // unknown, size 0x1			
-				case 'b': // uint8, size 0x1
-					// $size += 1;
-					$this->formatRecordSize += 1;
-					break;
-				default:  // unknown
-					$this->error = $this->_STR['INCORRECT_FORMAT_FILE'];
-					return false;
-					break;
-			}
-		}
-		if($this->formatRecordSize != $this->sizeRecord){
-			$this->error = sprintf($this->_STR['DIFF_SIZE_RECORDS'],$this->sizeRecord,$this->formatRecordSize);
-			return false;
-		}
-		return true;
 	}
 
 	private function initDB(){

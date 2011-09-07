@@ -9,8 +9,7 @@ include_once('core/dbc.class.php'); // including simple conecting for DB
 
 $DB = DbSimple_Generic::connect($db_config['dbc_dns']);
 $DB->setErrorHandler("databaseErrorHandler");
-$DB->setIdentPrefix($db_config['db_prefix']);
-$DB->query("SET NAMES ?",$db_config['db_encoding']);
+// $DB->setIdentPrefix($db_config['db_prefix']);
 $dbc = new DBCparser();
 
 define('URL_START','https://raw.github.com/mangos/mangos/');
@@ -144,10 +143,10 @@ $db_rows['incorrect_size'] =  $t;
 	<form method="POST">
 		<input type="submit" name="update_info" value="update_info" />
 		<input type="submit" name="update_xml" value="update_xml" />
-		<input type="submit" name="update_fmt_from_db" value="update_fmt_from_db" />
-		<input type="submit" name="update_struct" value="update_struct" />
-		<input type="submit" name="unk" value="unk" />
-		<input type="submit" name="check_struct_files" value="check_struct_files 400" />
+		<input type="submit" name="update_fmt_from_db" value="update_fmt_from_db" disabled />
+		<input type="submit" name="update_struct" value="update_struct" disabled />
+		<input type="submit" name="unk" value="unk" disabled />
+		<input type="submit" name="check_struct_files" value="check_struct_files 400" disabled />
 	</form>
 </div>
 <div>

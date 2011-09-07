@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: CreatureDisplayInfoExtra.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+<!-- $id: CreatureDisplayInfoExtra.xml 2011-09-08 05:01:24  SergiK_KilleR $ -->
 
 <file name="CreatureDisplayInfoExtra" format="niiiiiiiiiiiiiiiiiiis">
 	<field id="0" count="1" name="DisplayExtraId" type="uint32" key="1" />
@@ -12,5 +12,5 @@
 	<field id="7" count="1" name="BeardStyle" type="uint32" key="0" />
 	<field id="8" count="11" name="Equipment" type="uint32" key="0" />
 	<field id="19" count="1" name="CanEquip" type="uint32" key="0" />
-	<field id="20" count="1" name="unk20" type="string" key="0" />
+	<field id="20" count="1" name="bakeName" type="string" key="0" />
 </file>

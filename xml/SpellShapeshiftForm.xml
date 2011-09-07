@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: SpellShapeshiftForm.xml 2011-09-07 00:33:43  SergiK_KilleR $ -->
+<!-- $id: SpellShapeshiftForm.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
 
 <file name="SpellShapeshiftForm" format="nxxiixiiixxiiiiiiiix">
-	<field id="0" count="1" name="unk0" type="uint32" key="0" />
-	<field id="1" count="1" name="unk1" type="unknown" key="0" />
-	<field id="2" count="1" name="unk2" type="unknown" key="0" />
-	<field id="3" count="1" name="unk3" type="uint32" key="0" />
-	<field id="4" count="1" name="unk4" type="uint32" key="0" />
+	<field id="0" count="1" name="id" type="uint32" key="1" />
+	<field id="1" count="1" name="buttonPosition" type="unknown" key="0" />
+	<field id="2" count="1" name="Name" type="unknown" key="0" />
+	<field id="3" count="1" name="flags1" type="uint32" key="0" />
+	<field id="4" count="1" name="creatureType" type="uint32" key="0" />
 	<field id="5" count="1" name="unk5" type="unknown" key="0" />
-	<field id="6" count="1" name="unk6" type="uint32" key="0" />
-	<field id="7" count="1" name="unk7" type="uint32" key="0" />
+	<field id="6" count="1" name="attackSpeed" type="uint32" key="0" />
+	<field id="7" count="1" name="modelID_H" type="uint32" key="0" />
 	<field id="8" count="1" name="unk8" type="uint32" key="0" />
 	<field id="9" count="1" name="unk9" type="unknown" key="0" />
 	<field id="10" count="1" name="unk10" type="unknown" key="0" />
-	<field id="11" count="1" name="unk11" type="uint32" key="0" />
-	<field id="12" count="1" name="unk12" type="uint32" key="0" />
-	<field id="13" count="1" name="unk13" type="uint32" key="0" />
-	<field id="14" count="1" name="unk14" type="uint32" key="0" />
-	<field id="15" count="1" name="unk15" type="uint32" key="0" />
-	<field id="16" count="1" name="unk16" type="uint32" key="0" />
-	<field id="17" count="1" name="unk17" type="uint32" key="0" />
-	<field id="18" count="1" name="unk18" type="uint32" key="0" />
+	<field id="11" count="8" name="spellId" type="uint32" key="0" />
 	<field id="19" count="1" name="unk19" type="unknown" key="0" />
 </file>

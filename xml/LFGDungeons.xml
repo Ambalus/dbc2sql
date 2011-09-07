@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: LFGDungeons.xml 2011-09-07 00:33:42  SergiK_KilleR $ -->
+<!-- $id: LFGDungeons.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
 
-<file name="LFGDungeons" format="xsiiiiiiiiiiiiisx">
+<file name="LFGDungeons" format="xsiiiiiiiiiiiiixsx">
 	<field id="0" count="1" name="unk0" type="unknown" key="0" />
 	<field id="1" count="1" name="unk1" type="string" key="0" />
 	<field id="2" count="1" name="unk2" type="uint32" key="0" />
@@ -17,6 +17,7 @@
 	<field id="12" count="1" name="unk12" type="uint32" key="0" />
 	<field id="13" count="1" name="unk13" type="uint32" key="0" />
 	<field id="14" count="1" name="unk14" type="uint32" key="0" />
-	<field id="15" count="1" name="unk15" type="string" key="0" />
-	<field id="16" count="1" name="unk16" type="unknown" key="0" />
+	<field id="15" count="1" name="unk15" type="unknown" key="0" />
+	<field id="16" count="1" name="unk16" type="string" key="0" />
+	<field id="17" count="1" name="unk17" type="unknown" key="0" />
 </file>

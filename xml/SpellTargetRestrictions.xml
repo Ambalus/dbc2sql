@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: SpellTargetRestrictions.xml 2011-09-07 00:33:43  SergiK_KilleR $ -->
+<!-- $id: SpellTargetRestrictions.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
 
 <file name="SpellTargetRestrictions" format="diiiii">
-	<field id="0" count="1" name="unk0" type="sorted" key="0" />
-	<field id="1" count="1" name="unk1" type="uint32" key="0" />
+	<field id="0" count="1" name="id" type="sorted" key="1" />
+	<field id="1" count="1" name="Targets" type="uint32" key="0" />
 	<field id="2" count="1" name="unk2" type="uint32" key="0" />
 	<field id="3" count="1" name="unk3" type="uint32" key="0" />
 	<field id="4" count="1" name="unk4" type="uint32" key="0" />
