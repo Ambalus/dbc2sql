@@ -87,12 +87,12 @@ class DBCparser
 		$this->name = $filename;
 		if($this->file = fopen(self::$_dir.$this->name.'.dbc', "rb")){
 			$row = $this->DB->selectRow("SELECT * FROM ?# WHERE `file`=?",DB_TABLE_INFO,$this->name);
-			// if(isset($row['format']) && $row['format'] != ''){
+			if(isset($row['format']) && $row['format'] != ''){
 				$this->format = $row['format'];
-			// }
-			// if(isset($row['size_record']) && $row['size_record'] > 0){ // fix/hack
+			}
+			if(isset($row['size_record']) && $row['size_record'] > 0){ // fix/hack
 				$this->sizeRecord = $row['size_record'];
-			// }
+			}
 		}else{
 			trigger_error(sprintf($this->_STR['FILE_NOT_EXISTS'], $this->name), E_USER_ERROR);
 		}
@@ -174,7 +174,6 @@ class DBCparser
 		if(!$this->countFields)
 			return false;
 
-		// "CREATE TABLE ?# (
 		$sql = "CREATE TABLE ?# (\n";
 		$this->getFields(); // return $this->fields
 
