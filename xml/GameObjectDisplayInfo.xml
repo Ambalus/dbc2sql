@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: GameObjectDisplayInfo.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
-
 <file name="GameObjectDisplayInfo" format="nsiiiiiiiiiiffffffx">
 	<field id="0" count="1" name="DisplayId" type="uint32" key="1" />
 	<field id="1" count="1" name="filename" type="string" key="0" />

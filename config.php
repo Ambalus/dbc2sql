@@ -16,7 +16,7 @@ function databaseErrorHandler($message, $info) {
 	exit();
 }
 
-$f_log = fopen('logs.xmp','a+');
+// $f_log = fopen('logs.xmp','a+');
 function databaseLogHandler($db, $sql){
 	global $f_log;
 	$caller = $db->findLibraryCaller();

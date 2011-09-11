@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: TalentTab.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
-
 <file name="TalentTab" format="nxxiiixxxxx">
 	<field id="0" count="1" name="TalentTabID" type="uint32" key="1" />
 	<field id="1" count="1" name="name" type="unknown" key="0" />

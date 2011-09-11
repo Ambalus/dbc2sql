@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: SkillLineAbility.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
-
 <file name="SkillLineAbility" format="niiiiiiiiiiixx">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="skillId" type="uint32" key="0" />

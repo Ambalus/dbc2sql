@@ -1,4 +1,4 @@
-<?
+<?php
 error_reporting(E_ALL); 
 
 include_once('config.php');
@@ -33,60 +33,97 @@ function getStructFilesGIT($branch, &$output, &$info){
 			$output[] = array($regs[1],$regs[2]);
 		}
 	}
-
 	$info=$url;
-}
-
-function _struct($d){
-	$count = $d['columns'];
-	$str = '';
-	$req = '	%s => \'%s\'%s';
-	for($i=0;$i<$count;$i++){
-		$end = ($i+1 == $count)? '':','.ch(13).ch(10);
-		$str .= sprintf($req,$i,$i,$end);
-
-	}
-	return $str;
 }
 
 function get_type($char=null){
 	switch($char){
-		case 'i': return 'uint32';
-		case 'n': return 'uint32';
-		case 'f': return 'float';
-		case 'd': return 'sorted';
-		case 's': return 'string';
-		case 'b': return 'uint8';
-		case 'l': return 'bool';
-		case 'x': return 'unknown';
-		case 'X': return 'unknown';
-		default:  return 'unknown';
+		case FT_INT:	return 'uint32';
+		case FT_IND:	return 'uint32';
+		case FT_FLOAT:	return 'float';
+		case FT_SORT:	return 'sorted';
+		case FT_STRING:	return 'string';
+		case FT_BYTE:	return 'uint8';
+		case FT_LOGIC:	return 'bool';
+		case FT_NA:		return 'unknown';
+		case FT_NA_BYTE:return 'unknown';
+		default:		return 'unknown';
 	};
+}
+function update_dom_xml(){
+	global $DBCstruct, $DBCfmt;
+
+	foreach($DBCfmt as $name => $format){
+		$struct = $DBCstruct[$name];
+		$xml=new DomDocument('1.0','utf-8');
+		$file = $xml->createElement('file');
+		$xname = $xml->createAttribute('name');
+		$value = $xname->appendChild($xml->createTextNode($name));
+		$xformat = $xml->createAttribute('format');
+		$value = $xformat->appendChild($xml->createTextNode($format));
+		for($i=0;$i< strlen($format);$i++){
+			$field = $xml->createElement('field');
+			$sid = $xml->createAttribute('id');
+			$value = $sid->appendChild($xml->createTextNode($i));
+
+			$count = @is_array($struct[$i]) ? $struct[$i][1] : 1;
+			$scount = $xml->createAttribute('count');
+			$value = $scount->appendChild($xml->createTextNode(($count>1)? $count:1));
+
+			$key = @(is_array($struct[$i]) && $struct[$i][1] == INDEX_PRIMORY_KEY) ? 1 : 0;
+			$skey = $xml->createAttribute('key');
+			$value = $skey->appendChild($xml->createTextNode($key));
+
+			$type = get_type($format[$i]);
+			$stype = $xml->createAttribute('type');
+			$value = $stype->appendChild($xml->createTextNode($type));
+
+			$text_name = "unk$i";
+			if(isset($struct[$i]) && $struct[$i]!=''){
+				$text_name = is_array($struct[$i]) ? $struct[$i][0] : $struct[$i];
+			}
+			$sname = $xml->createAttribute('name');
+			$value = $sname->appendChild($xml->createTextNode($text_name));
+
+			$field->appendChild($sid);
+			$field->appendChild($scount);
+			$field->appendChild($sname);
+			$field->appendChild($stype);
+			$field->appendChild($skey);
+			$file->appendChild($field);
+			if($count>1){
+				$i += $count-1;
+			}
+		}
+		$file->appendChild($xname);
+		$file->appendChild($xformat);
+		$xml->appendChild($file);
+		$xml->formatOutput = true;
+		$xml->save('xml/'.$name.'.xml');
+	}
 }
 
 function update_xml(){
 	global $DBCstruct, $DBCfmt;
+	$_str = "\t<field id=\"%d\" count=\"%d\" name=\"%s\" type=\"%s\" key=\"%d\" />\r\n";
 
 	foreach($DBCfmt as $name => $format){
+		$struct = $DBCstruct[$name];
 		$fh = fopen('xml/'.$name.'.xml', 'wb');
 		fwrite($fh, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n");
-		fwrite($fh, "<!-- \$id: $name.xml ".date('Y-m-d H:i:s')."  SergiK_KilleR $ -->\r\n");
-		fwrite($fh, "\r\n<file name=\"$name\" format=\"$format\">\r\n");
+		// fwrite($fh, "<!-- \$id: $name.xml ".date('Y-m-d H:i:s')."  SergiK_KilleR $ -->\r\n\r\n");
+		fwrite($fh, "<file name=\"$name\" format=\"$format\">\r\n");
 		for($i=0;$i<strlen($format);$i++){
-			if(@$DBCstruct[$name][$i]==''){
-				fwrite($fh, "\t<field id=\"$i\" count=\"1\" name=\"unk$i\" type=\"".get_type($format[$i])."\" key=\"0\" />\r\n");
-			}else{
-				if(is_array($DBCstruct[$name][$i])){
-					if($DBCstruct[$name][$i][1]===1){
-						fwrite($fh, "\t<field id=\"".$i."\" count=\"1\" name=\"".$DBCstruct[$name][$i][0]."\" type=\"".get_type($format[$i])."\" key=\"1\" />\r\n");
-					}else{
-						$count = $DBCstruct[$name][$i][1];
-						fwrite($fh, "\t<field id=\"".$i."\" count=\"$count\" name=\"".$DBCstruct[$name][$i][0]."\" type=\"".get_type($format[$i])."\" key=\"0\" />\r\n");
-						$i +=($count-1);
-					}
-				}else{
-					fwrite($fh, "\t<field id=\"$i\" count=\"1\" name=\"".$DBCstruct[$name][$i]."\" type=\"".get_type($format[$i])."\" key=\"0\" />\r\n");
-				}
+			$count = @is_array($struct[$i]) ? $struct[$i][1] : 1;
+			$key = @($struct[$i][1] == INDEX_PRIMORY_KEY) ? 1 : 0;
+			$type = get_type($format[$i]);
+			$field = "unk$i";
+			if(isset($struct[$i]) && $struct[$i]!=''){
+				$field = is_array($struct[$i]) ? $struct[$i][0] : $struct[$i];
+			}
+			fprintf($fh,$_str,$i,$count,$field,$type,$key);
+			if($count>1){
+				$i += $count-1;
 			}
 		}
 		fwrite($fh, "</file>");
@@ -94,7 +131,6 @@ function update_xml(){
 }
 
 function getListFiles($dir="dbc") {
-	// Открыть заведомо существующий каталог и начать считывать его содержимое
 	$list = array();
 	if (is_dir($dir)) {
 	    if ($dh = opendir($dir)) {
@@ -143,15 +179,14 @@ $db_rows['incorrect_size'] =  $t;
 	<form method="POST">
 		<input type="submit" name="update_info" value="update_info" />
 		<input type="submit" name="update_xml" value="update_xml" />
-		<input type="submit" name="update_fmt_from_db" value="update_fmt_from_db" disabled />
-		<input type="submit" name="update_struct" value="update_struct" disabled />
-		<input type="submit" name="unk" value="unk" disabled />
-		<input type="submit" name="check_struct_files" value="check_struct_files 400" disabled />
+		<input type="submit" name="update_fmt_from_db" value="update_fmt_from_db" />
+		<input type="submit" name="update_struct" value="update_struct" />
+		<input type="submit" name="check_struct_files" value="check_struct_files 400" />
 	</form>
 </div>
 <div>
 <pre>
-<?
+<?php
 if(isset($_POST['update_info'])){
 	foreach($f_dbc as $f){
 		$dbc->_set($f);
@@ -161,11 +196,12 @@ if(isset($_POST['update_info'])){
 if(isset($_POST['update_xml'])){
 	update_xml();
 }
+
 if(isset($_POST['update_fmt_from_db'])){
 	$data = $DB->selectPage($count,"SELECT * FROM `_dbc_info_`");
 	$ffmt = fopen('core/fmt.php.ini','wb');
-	$str_fmt = '\'%s\' => \'%s\'%s // rows: %s, cols: %s%c%c';
-	fprintf($ffmt,'<?php%c%c// dbc format v4.0.0%c%c$DBCfmt = array(%c%c',13,10,13,10,13,10);
+	$str_fmt = "'%s' => '%s'%s // rows: %s, cols: %s\r\n";
+	fprintf($ffmt,"<?php\r\n// dbc format v4.0.0\r\n\$DBCfmt = array(\r\n");
 	foreach($data as $c => $d){
 		$strlen = strlen($d['format']);
 		$str_inc = ($c+1 == $count)? '':',';
@@ -174,8 +210,7 @@ if(isset($_POST['update_fmt_from_db'])){
 			$d['columns'] = $d['columns'].'('.$strlen.')';
 			$DB->query("UPDATE `_dbc_info_` SET `valid`=0 WHERE `file`=? ",$d['file']);
 		}
-		// $struct = _struct($d);
-		fprintf($ffmt,$str_fmt,$d['file'],$d['format'],$str_inc,$d['rows'],$d['columns'],13,10);
+		fprintf($ffmt,$str_fmt,$d['file'],$d['format'],$str_inc,$d['rows'],$d['columns']);
 	}
 	fwrite($ffmt,');');
 }
@@ -183,26 +218,23 @@ if(isset($_POST['update_fmt_from_db'])){
 if(isset($_POST['update_struct'])){
 	$data = $DB->selectPage($count,"SELECT * FROM `_dbc_info_`");
 	$fs = fopen('core/struct.php.ini','wb');
-	$str_s = '\'%s\' => array()%s // rows: %s, cols: %s%c%c';
-	fprintf($fs,'<?php%c%c// dbc format v4.0.0%c%c$DBCstruct = array(%c%c',13,10,13,10,13,10);
+	$str_s = "'%s' => array()%s // rows: %s, cols: %s\r\n";
+	fprintf($fs,"<?php\r\n// dbc format v4.0.0\r\n\$DBCstruct = array(\r\n");
 	foreach($data as $c => $d){
 		$strlen = strlen($d['format']);
 		$str_inc = ($c+1 == $count)? '':',';
-
 		if($strlen!=$d['columns']){
 			$d['columns'] = $d['columns'].'('.$strlen.')';
 			$DB->query("UPDATE `_dbc_info_` SET `valid`=0 WHERE `file`=? ",$d['file']);
 		}
-		fprintf($fs,$str_s,$d['file'],$str_inc,$d['rows'],$d['columns'],13,10);
+		fprintf($fs,$str_s,$d['file'],$str_inc,$d['rows'],$d['columns']);
 	}
 	fwrite($fs,');');
-
 }
 
 if(isset($_POST['check_struct_files'])){
 	getStructFilesGIT($branch,$output,$info);
 	$i=0;
-
 	$dom = new DOMDocument();
 	$dom->preserveWhiteSpace = false;
 	$dom->substituteEntities = true;
@@ -214,7 +246,6 @@ if(isset($_POST['check_struct_files'])){
 		if(file_exists($xmlfile)){
 			$dom->Load($xmlfile);
 			$tt = $dom->getElementsByTagName('file')->item(0);
-			// $arr["L"] = $tt->getAttribute('format');
 			$arr["L"] = $DBCfmt[$arr[0]];
 			if($arr["L"]!=$arr[1])
 				print_r($arr);
@@ -222,7 +253,4 @@ if(isset($_POST['check_struct_files'])){
 		}
 	}	
 }
-
-
 ?></pre></div>
-

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: TalentTreePrimarySpells.xml 2011-09-08 05:01:26  SergiK_KilleR $ -->
-
 <file name="TalentTreePrimarySpells" format="xxxx">
 	<field id="0" count="1" name="unk0" type="unknown" key="0" />
 	<field id="1" count="1" name="unk1" type="unknown" key="0" />

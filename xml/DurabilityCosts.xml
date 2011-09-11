@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $id: DurabilityCosts.xml 2011-09-08 05:01:25  SergiK_KilleR $ -->
-
 <file name="DurabilityCosts" format="niiiiiiiiiiiiiiiiiiiiiiiiiiiii">
 	<field id="0" count="1" name="Itemlvl" type="uint32" key="0" />
 	<field id="1" count="29" name="multiplier" type="uint32" key="0" />
