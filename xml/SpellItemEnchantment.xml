@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<file name="SpellItemEnchantment" format="nxiiiiiixxxiiisiiiixxxx">
+<file name="SpellItemEnchantment" format="niiiiiiixxxiiisiiiiiixx">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
-	<field id="1" count="1" name="charges" type="unknown" key="0" />
+	<field id="1" count="1" name="charges" type="uint32" key="0" />
 	<field id="2" count="3" name="effectArg" type="uint32" key="0" />
 	<field id="5" count="1" name="unk5" type="uint32" key="0" />
 	<field id="6" count="1" name="unk6" type="uint32" key="0" />
@@ -17,8 +17,8 @@
 	<field id="16" count="1" name="flags" type="uint32" key="0" />
 	<field id="17" count="1" name="GemID" type="uint32" key="0" />
 	<field id="18" count="1" name="EnchantmentCondition" type="uint32" key="0" />
-	<field id="19" count="1" name="requiredSkill" type="unknown" key="0" />
-	<field id="20" count="1" name="requiredSkillValue" type="unknown" key="0" />
+	<field id="19" count="1" name="requiredSkill" type="uint32" key="0" />
+	<field id="20" count="1" name="requiredSkillValue" type="uint32" key="0" />
 	<field id="21" count="1" name="unk21" type="unknown" key="0" />
 	<field id="22" count="1" name="unk22" type="unknown" key="0" />
 </file>

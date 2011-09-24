@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<file name="SpellEffect" format="difiiixfiiiiiifixfiiiiiiiix">
+<file name="SpellEffect" format="difiiixfiiiiiifiifiiiiiixxx">
 	<field id="0" count="1" name="id" type="sorted" key="1" />
 	<field id="1" count="1" name="effect" type="uint32" key="0" />
 	<field id="2" count="1" name="effectAmplitude" type="float" key="0" />
@@ -16,7 +16,7 @@
 	<field id="13" count="1" name="effectMiscValueB" type="uint32" key="0" />
 	<field id="14" count="1" name="effectPointsPerCombo" type="float" key="0" />
 	<field id="15" count="1" name="effectRadiusIndex" type="uint32" key="0" />
-	<field id="16" count="1" name="effectRadiusMaxIndex" type="unknown" key="0" />
+	<field id="16" count="1" name="effectRadiusMaxIndex" type="uint32" key="0" />
 	<field id="17" count="1" name="effectRealPointsPerLevel" type="float" key="0" />
 	<field id="18" count="1" name="effectSpellClassMask" type="uint32" key="0" />
 	<field id="19" count="1" name="effectTriggerSpell" type="uint32" key="0" />
@@ -24,7 +24,7 @@
 	<field id="21" count="1" name="effectImplicitTargetB" type="uint32" key="0" />
 	<field id="22" count="1" name="effectSpellId" type="uint32" key="0" />
 	<field id="23" count="1" name="effectIndex" type="uint32" key="0" />
-	<field id="24" count="1" name="unk24" type="uint32" key="0" />
-	<field id="25" count="1" name="unk25" type="uint32" key="0" />
+	<field id="24" count="1" name="unk24" type="unknown" key="0" />
+	<field id="25" count="1" name="unk25" type="unknown" key="0" />
 	<field id="26" count="1" name="unk26" type="unknown" key="0" />
 </file>

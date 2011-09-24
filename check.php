@@ -6,6 +6,7 @@ include_once('core/fmt.php');
 include_once('core/struct.php');
 include_once('core/dbsimple/Generic.php'); // including simple conecting for DB
 include_once('core/dbc.class.php'); // including simple conecting for DB
+define('BASE_BUILD_CLIENT',0);
 
 $DB = DbSimple_Generic::connect($db_config['dbc_dns']);
 $DB->setErrorHandler("databaseErrorHandler");
@@ -130,25 +131,41 @@ function update_xml(){
 	}
 }
 
-function getListFiles($dir="dbc") {
+function getListFiles($dir="dbc/",$type='dbc') {
 	$list = array();
-	if (is_dir($dir)) {
-	    if ($dh = opendir($dir)) {
-	        while ($file = readdir($dh)) {
-				if(strlen($file)>4) {
-					$filename = explode('.',$file);
-					if($filename[1]=$dir)
-						$list[] = $filename[0];
+	if(!$temp = @scandir($dir))
+		return;
+
+	foreach($temp as $f){
+		if(strlen($f)>2){
+			if(is_file($dir.$f)){
+				$filename = explode('.',$f);
+				if($filename[1]==$type){
+					$list[] = $filename[0];
 				}
-	        }
-	        closedir($dh);
-	    }
+			}
+		}
 	}
 	return $list;
 }
 
-$f_dbc = getListFiles('dbc');
-$f_xml = getListFiles('xml');
+function getListSubdirs($dir="dbc/") {
+	$list = array();
+	if(!$temp = @scandir($dir))
+		return;
+
+	foreach($temp as $f){
+		if(strlen($f)>2){
+			if(is_dir($dir.$f)){
+				$list[] = $f;
+			}
+		}
+	}
+	return $list;
+}
+
+$f_dbc = getListFiles('dbc/');
+$f_xml = getListFiles('xml/','xml');
 
 $res = $DB->selectPage($count,"SELECT `file` FROM `_dbc_info_`");
 $db_rows['count'] = $count;
@@ -181,6 +198,7 @@ $db_rows['incorrect_size'] =  $t;
 		<input type="submit" name="update_xml" value="update_xml" />
 		<input type="submit" name="update_fmt_from_db" value="update_fmt_from_db" />
 		<input type="submit" name="update_struct" value="update_struct" />
+		<input type="submit" name="listing_dbc" value="listing_dbc" disabled />
 		<input type="submit" name="check_struct_files" value="check_struct_files 400" />
 	</form>
 </div>
@@ -191,6 +209,28 @@ if(isset($_POST['update_info'])){
 	foreach($f_dbc as $f){
 		$dbc->_set($f);
 		$dbc->getHeader();
+	}
+
+	$DB->query('TRUNCATE `_dbc_fields_`');
+	foreach($f_dbc as $f){
+		$fmt = $DBCfmt[$f];
+		$struct = $DBCstruct[$f];
+		$strlen=strlen($fmt);
+		for($i=0;$i<strlen($fmt);$i++){
+			$count = (@is_array($struct[$i]) && $struct[$i][1] > 1) ? $struct[$i][1] : '-1';
+			$key = @($struct[$i][1] == INDEX_PRIMORY_KEY) ? 1 : 0;
+			$type = get_type($fmt[$i]);
+			$field = null;
+			if(isset($struct[$i]) && $struct[$i]!=''){
+				$field = is_array($struct[$i]) ? $struct[$i][0] : $struct[$i];
+			}
+
+			$out = array($f,$i,$field,$key,$count,$fmt[$i],$type);
+			$DB->query('INSERT INTO `_dbc_fields_` VALUES(?a)',$out);
+			if($count>1){
+				$i += $count-1;
+			}
+		}
 	}
 }
 if(isset($_POST['update_xml'])){
@@ -252,5 +292,38 @@ if(isset($_POST['check_struct_files'])){
 		}else{
 		}
 	}	
+}
+
+if(isset($_POST['dbclayout'])){
+	$b_dbc = getListFiles('dbc/','dbc');
+	$subdirs = getListSubdirs('dbc/');
+
+	$f_w = fopen("dbclayout.xml",'wb');
+	fwrite($f_w, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n");
+	fwrite($f_w, "<DBCFilesClient>\r\n");
+	fwrite($f_w, "\t<DBCFilesBase build=\"".BASE_BUILD_CLIENT."\">\r\n");
+	foreach($b_dbc as $f){
+		if(in_array($f,$b_dbc))
+			fwrite($f_w, "\t\t<file name=\"$f\"/>\r\n");
+	}
+	fwrite($f_w, "\t</DBCFilesBase>\r\n");
+
+	if(is_array($subdirs)){
+		foreach($subdirs as $sd){
+			$p_dbc = getListFiles('dbc/'.$sd,'dbc');
+			$diff_dbc = array_diff($p_dbc,$b_dbc);
+			if(count($diff_dbc) > 0){
+				fwrite($f_w, "\t<DBCFilesPatch build=\"$sd\">\r\n");
+				foreach($p_dbc as $f){
+					if(!in_array($f,$b_dbc))
+						fwrite($f_w, "\t\t<file name=\"$f\"/>\r\n");
+				}
+				fwrite($f_w, "\t</DBCFilesPatch>\r\n");
+			}else{
+				fwrite($f_w, "\t<DBCFilesPatch build=\"$sd\"/>\r\n");
+			}
+		}
+	}
+	fwrite($f_w, "</DBCFilesClient>");
 }
 ?></pre></div>

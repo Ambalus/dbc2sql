@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<file name="ItemExtendedCost" format="niiiiiiiiiiiiiixxxxxxxxxxxxxxxx">
+<file name="ItemExtendedCost" format="niiiiiiiiiiiiiixiiiiiiiiiiiiiii">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="reqhonorpoints" type="uint32" key="0" />
 	<field id="2" count="1" name="reqarenapoints" type="uint32" key="0" />
@@ -10,10 +10,7 @@
 	<field id="13" count="1" name="unk13" type="uint32" key="0" />
 	<field id="14" count="1" name="reqpersonalarenarating" type="uint32" key="0" />
 	<field id="15" count="1" name="unk15" type="unknown" key="0" />
-	<field id="16" count="4" name="someId" type="unknown" key="0" />
-	<field id="20" count="1" name="unk20" type="unknown" key="0" />
-	<field id="21" count="4" name="someCount" type="unknown" key="0" />
-	<field id="25" count="1" name="unk25" type="unknown" key="0" />
-	<field id="26" count="4" name="something" type="unknown" key="0" />
-	<field id="30" count="1" name="unk30" type="unknown" key="0" />
+	<field id="16" count="5" name="someId" type="uint32" key="0" />
+	<field id="21" count="5" name="someCount" type="uint32" key="0" />
+	<field id="26" count="5" name="something" type="uint32" key="0" />
 </file>

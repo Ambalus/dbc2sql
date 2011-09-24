@@ -1,25 +1,26 @@
 <?php
-error_reporting(E_ALL); 
+error_reporting(E_ALL);
 
-function getListFiles($dir="dbc/") {
-	// Открыть заведомо существующий каталог и начать считывать его содержимое
+function getListFiles($dir="dbc/",$type='dbc') {
 	$list = array();
-	if (is_dir($dir)) {
-	    if ($dh = opendir($dir)) {
-	        while ($file = readdir($dh)) {
-				if(strlen($file)>4) {
-					$filename = explode('.',$file);
+	if(!$temp = @scandir($dir))
+		return;
+
+	foreach($temp as $f){
+		if(strlen($f)>2){
+			if(is_file($dir.$f)){
+				$filename = explode('.',$f);
+				if($filename[1]==$type){
 					$list[] = $filename[0];
 				}
-	        }
-	        closedir($dh);
-	    }
+			}
+		}
 	}
 	return $list;
 }
 
-$dbcList = getListFiles("dbc/");
-$xmlList = getListFiles("xml/");
+$dbcList = getListFiles('dbc/','dbc');
+$xmlList = getListFiles('xml/','xml');
 
 ?>
 <!DOCTYPE HTML PUBLIC  

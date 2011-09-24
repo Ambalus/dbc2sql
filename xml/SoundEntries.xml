@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<file name="SoundEntries" format="nisssssssssssxxxxxxxxxxsfxxxxxxxxx">
+<file name="SoundEntries" format="nisssssssssssiiiiiiiiiisfxxxxxxxxx">
 	<field id="0" count="1" name="id" type="uint32" key="1" />
 	<field id="1" count="1" name="Type" type="uint32" key="0" />
 	<field id="2" count="1" name="InternalName" type="string" key="0" />
 	<field id="3" count="10" name="FileName" type="string" key="0" />
-	<field id="13" count="10" name="Freq" type="unknown" key="0" />
+	<field id="13" count="10" name="Freq" type="uint32" key="0" />
 	<field id="23" count="1" name="DirectoryBase" type="string" key="0" />
 	<field id="24" count="1" name="volumeFloat" type="float" key="0" />
 	<field id="25" count="1" name="unk25" type="unknown" key="0" />

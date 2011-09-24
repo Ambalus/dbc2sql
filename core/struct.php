@@ -6,8 +6,8 @@ if(!defined('INDEX_PRIMORY_KEY')){
 $DBCstruct = array(
 'Achievement' => array( // rows: 2533, cols: 14
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
-	1 => 'factionFlag',							// 1	uint32	m_faction -1=all, 0=horde, 1=alliance
-	2 => 'mapId',								// 2	uint32	m_instance_Id -1=none
+	1 => 'factionFlag',							// 1	int32	m_faction -1=all, 0=horde, 1=alliance
+	2 => 'mapId',								// 2	int32	m_instance_Id -1=none
 	3 => 'parentAchievement',					// 3	uint32	m_supercedes its Achievement parent (can`t start while parent uncomplete, use its Criteria if don`t have own, use its progress on begin)
 	4 => 'name',						 		// 4	string	m_title_lang
 	5 => 'description',							// 5	char*	m_description_lang
@@ -30,7 +30,7 @@ $DBCstruct = array(
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
 	1 => 'referredAchievement',					// 1	uint32	m_achievement_Id
 	2 => 'requiredType',						// 2	uint32	m_type
-												// 3-8	uint32	m_param (параметры критериев ачив)
+	3 => array('paramAchiev',6),				// 3-8	uint32	m_param (параметры критериев ачив)
 	9 => 'name',								// 9	uint32	m_description_lang
 	10=> 'completionFlag',						// 10	uint32	m_flags
 	11=> 'timedCriteriaStartType',				// 11	uint32	m_timer_start_event Only appears with timed achievements, seems to be the type of starting a timed Achievement, only type 1 and some of type 6 need manual starting
@@ -46,13 +46,39 @@ $DBCstruct = array(
 	20=> array('moreRequirementValue',3)		// 20-22uint32	
 ),
 'AnimationData' => array(), // rows: 654, cols: 6
-'AnimKit' => array(), // rows: 1034, cols: 3
-'AnimKitBoneSet' => array(), // rows: 10, cols: 6
-'AnimKitBoneSetAlias' => array(), // rows: 10, cols: 3
-'AnimKitConfig' => array(), // rows: 98, cols: 2
-'AnimKitConfigBoneSet' => array(), // rows: 129, cols: 4
-'AnimKitPriority' => array(), // rows: 54, cols: 2
-'AnimKitSegment' => array(), // rows: 1730, cols: 16(0)
+'AnimKit' => array( // rows: 1034, cols: 3
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1
+												// 2
+),
+'AnimKitBoneSet' => array( // rows: 10, cols: 6
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1
+												// 2
+												// 3
+												// 4
+												// 5
+),
+'AnimKitBoneSetAlias' => array( // rows: 10, cols: 3
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1	uint32	
+												// 2	uint32	
+),
+'AnimKitConfig' => array( // rows: 98, cols: 2
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1	uint32	
+),
+'AnimKitConfigBoneSet' => array( // rows: 129, cols: 4
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1	uint32	
+												// 2	uint32	
+												// 3	uint32	
+),
+'AnimKitPriority' => array( // rows: 54, cols: 2
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1	uint32	
+),
+'AnimKitSegment' => array(), // rows: 1730, cols: 16
 'AnimReplacement' => array(), // rows: 103, cols: 4
 'AnimReplacementSet' => array(), // rows: 29, cols: 2
 'AreaAssignment' => array(), // rows: 15291, cols: 5
@@ -61,7 +87,10 @@ $DBCstruct = array(
 	1 => array('AreaId',6),						// 1-6	uint32	m_areaId
 	7 => 'nextGroup'							// 7	uint32	m_nextAreaId
 ),
-'AreaPOI' => array(), // rows: 886, cols: 22(54)
+'AreaPOI' => array( // rows: 886, cols: 22
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
+												// 1-21
+),
 'AreaPOISortedWorldState' => array(), 	// rows: 5, cols: 3
 'AreaTable' => array( // rows: 3163, cols: 26
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
@@ -69,18 +98,18 @@ $DBCstruct = array(
 	2 => 'zone',								// 2	uint32	m_ParentAreaId
 	3 => 'exploreFlag',							// 3	uint32	m_AreaBit
 	4 => 'flags',								// 4	uint32	m_flags
-												// 5	uint32	m_SoundProvIderPref
-												// 6	uint32	m_SoundProvIderPrefUnderwater
-												// 7	uint32	m_AmbienceId
-												// 8	uint32	m_ZoneMusic
-												// 9	uint32	m_IntroSound
+	5 => 'SoundProvIderPref',					// 5	uint32	m_SoundProvIderPref
+	6 => 'SoundProvIderPrefUnderwater',			// 6	uint32	m_SoundProvIderPrefUnderwater
+	7 => 'AmbienceId',							// 7	uint32	m_AmbienceId
+	8 => 'ZoneMusic',							// 8	uint32	m_ZoneMusic
+	9 => 'IntroSound',							// 9	uint32	m_IntroSound
 	10=> 'area_level',							// 10	uint32	m_ExplorationLevel
 	11=> 'area_name',							// 11	string	m_AreaName_lang
 	12=> 'team',								// 12	uint32	m_factionGroupMask
-												// 13-16uint32	m_liquIdTypeId[4]
-												// 17	uint32	m_minElevation
-												// 18	uint32	m_ambient_multiplier
-												// 19	uint32	m_lightId
+	13=> array('iquIdTypeId',4),				// 13-16uint32	m_liquIdTypeId[4]
+	17=> 'minElevation',						// 17	uint32	m_minElevation
+	18=> 'ambientMultiplier',					// 18	uint32	m_ambient_multiplier
+	19=> 'lightId',								// 19	uint32	m_lightId
 												// 20	uint32	4.0.0
 												// 21	uint32	4.0.0
 												// 22	uint32	4.0.0
@@ -124,12 +153,12 @@ $DBCstruct = array(
 'BarberShopStyle' => array( // rows: 645, cols: 8
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
 	1 => 'type',								// 1	uint32	m_type
-	2 => 'name',								// 2	char*	m_DisplayName_lang
-	3 => 'unk_name',							// 3	uint32	m_Description_lang
+	2 => 'DisplayName',							// 2	char*	m_DisplayName_lang
+	3 => 'Description',							// 3	uint32	m_Description_lang
 	4 => 'CostMultiplier',						// 4	float	m_Cost_Modifier
 	5 => 'race',								// 5	uint32	m_race
 	6 => 'gender',								// 6	uint32	m_sex
-	7 => 'hair_Id'								// 7	uint32	m_data (real Id to hair/facial hair)
+	7 => 'hairId'								// 7	uint32	m_data (real Id to hair/facial hair)
 ),
 'BattlemasterList' => array( // rows: 21, cols: 20
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
@@ -151,8 +180,8 @@ $DBCstruct = array(
 'CastableRaidBuffs' => array(), // rows: 1, cols: 3
 'Cfg_Categories' => array( // rows: 49, cols: 5
 	0 =>array('catId',INDEX_PRIMORY_KEY),		// 0	uint32	m_Id categoryId (sent in RealmList packet)
-												// 1	uint32	m_localeMask
-												// 2	uint32	m_charsetMask
+	1 => 'localeMask',							// 1	uint32	m_localeMask
+	2 => 'charsetMask',							// 2	uint32	m_charsetMask
 	3 => 'isTournamentRealm',					// 3	uint32	m_flags
 	4 => 'categoryName'							// 4	char*	m_name_lang
 ),
@@ -181,16 +210,16 @@ $DBCstruct = array(
 ),
 'CharTitles' => array( // rows: 191, cols: 6
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
-	1 => 'unk1',								// 1	uint32	m_Condition_Id
+	1 => 'ConditionId',							// 1	uint32	m_Condition_Id
 	2 => 'name',								// 2	string	m_name_lang
 	3 => 'name2',						 		// 3	char*	m_name1_lang
-	4 => 'bit_index',							// 4	uint32	m_mask_Id used in PLAYER_CHOSEN_TITLE and 1<<index in PLAYER__FIELD_KNOWN_TITLES
+	4 => 'bitIndex',							// 4	uint32	m_mask_Id used in PLAYER_CHOSEN_TITLE and 1<<index in PLAYER__FIELD_KNOWN_TITLES
 	//uint32									// 5	uint32	
 ),
 'ChatChannels' => array( // rows: 5, cols: 5
 	0 => array('ChannelId',INDEX_PRIMORY_KEY),	// 0	uint32	m_Id
 	1 => 'flags',								// 1	uint32	m_flags
-												// 2	uint32	m_factionGroup
+	2 => 'factionGroup',						// 2	uint32	m_factionGroup
 	3 => 'pattern',								// 3	string	m_name_lang
 	4 => 'name',								// 4	char*	m_shortcut_lang
 ),
@@ -204,7 +233,7 @@ $DBCstruct = array(
 	5 => 'nameNeutralGender',			 		// 5	char*	m_name_male_lang
 	6 => 'capitalizedName',						// 6	char*	m_filename
 	7 => 'spellfamily',							// 7	uint32	m_spellClassSet
-	8 => 'flags2',								// 8	uint32	m_flags (0x08 HasRelicSlot)
+	8 => 'flags',								// 8	uint32	m_flags (0x08 HasRelicSlot)
 	9 => 'CinematicSequence',					// 9	uint32	m_cinematicSequenceId
 	10=> 'expansion',							// 10	uint32	m_required_expansion
 												// 11	uint32
@@ -372,7 +401,7 @@ $DBCstruct = array(
 	19=> 'n',									// 19	uint32	m_parentFactionMod[2] Faction gains incoming rep * spilloverRateIn
 	20=> 't',									// 20		Faction outputs rep * spilloverRateOut as spillover reputation
 	21=> 'spilloverMaxRankIn',					// 21	uint32	m_parentFactionCap[2] The highest rank the faction will profit from incoming spillover
-	22=> 'spilloverRank_unk',					// 22		It does not seem to be the max standing at which a faction outputs spillover ...so no Idea
+	22=> 'spilloverRank',						// 22			It does not seem to be the max standing at which a faction outputs spillover ...so no Idea
 	23=> 'name',								// 23	uint32	m_name_lang
 	24=> 'description',						// 24	uint32	m_description_lang
 	//uint32									// 25
@@ -396,7 +425,7 @@ $DBCstruct = array(
 	0 => array('DisplayId',INDEX_PRIMORY_KEY),	// 0	uint32	m_Id
 	1 => 'filename',							// 1	uint32	m_modelName
 												// 2-11	uint32	m_Sound
-	12=> 'boxMinX',							// 12	uint32	m_geoBoxMinX (use first value as interact dist, mostly in hacks way)
+	12=> 'boxMinX',								// 12	uint32	m_geoBoxMinX (use first value as interact dist, mostly in hacks way)
 												// 13	uint32	m_geoBoxMinY
 												// 14	uint32	m_geoBoxMinZ
 												// 15	uint32	m_geoBoxMaxX
@@ -468,10 +497,10 @@ $DBCstruct = array(
 	39 =>array('calendarFlags',10),				// 39-48uint32	m_calendarFlags
 	49=> 'holIdayNameId',						// 49	uint32	m_holIdayNameId (HolIdayNames.dbc)
 	50=> 'holIdayDescriptionId',				// 50	uint32	m_holIdayDescriptionId (HolIdayDescriptions.dbc)
-	51=> 'textureFilename',						// 51	uint32	m_textureFilename
+	51=> 'textureFilename',						// 51	string	m_textureFilename
 	52=> 'priority',							// 52	uint32	m_priority
 	53=> 'calendarFilterType',					// 53	uint32	m_calendarFilterType (-1,0,1 or 2)
-	54=> 'flags',								// 54	uint32	m_flags
+	54=> 'flags'								// 54	uint32	m_flags
 ),
 'Item' => array( // rows: 57264, cols: 8
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
@@ -502,7 +531,7 @@ $DBCstruct = array(
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
 	1 => 'name'									// 1	uint32	m_name_lang
 ),
-'ItemClass' => array(), // rows: 17, cols: 5(20)
+'ItemClass' => array(), // rows: 17, cols: 5
 'ItemCondExtCosts' => array(), // rows: 1163, cols: 4
 'ItemDamageAmmo' => array( // rows: 1000, cols: 9
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	item level
@@ -567,10 +596,10 @@ $DBCstruct = array(
 	5 => array('reqitem',4),					// 5-8	uint32	m_itemId
 	9 => array('reqitemcount',4),				// 9-13	uint32	m_itemCount
 	14=> 'reqpersonalarenarating',				// 14	uint32	m_requiredArenaRating
-	//uint32									// 15	uint32	m_itemPurchaseGroup
-	16=> array('someId',4),					// 16-20uint32	may be currency Id's
-	21=> array('someCount',4),					// 21-25uint32	
-	26=> array('something',4)					// 26-30uint32	
+												// 15	uint32	m_itemPurchaseGroup
+	16=> array('someId',5),						// 16-20uint32	may be currency Id's
+	21=> array('someCount',5),					// 21-25uint32	
+	26=> array('something',5)					// 26-30uint32	
 ),
 'ItemGroupSounds' => array(), // rows: 24, cols: 5
 'ItemLimitCategory' => array( // rows: 142, cols: 4
@@ -672,7 +701,7 @@ $DBCstruct = array(
 	2 => 'content'								// 2	uint32	m_body_lang
 ),
 'Map' => array( // rows: 199, cols: 20
-	0 => 'MapId',								// 0	uint32	m_Id
+	0 => array('MapId',INDEX_PRIMORY_KEY),		// 0	uint32	m_Id
 	1 => 'internalname',						// 1	char*	m_Directory
 	2 => 'map_type',							// 2	uint32	m_InstanceType
 	3 => 'mapFlags',							// 3	uint32	m_Flags (0x100 - CAN_CHANGE_PLAYER_DIFFICULTY)
@@ -689,7 +718,7 @@ $DBCstruct = array(
 	14=> 'ghost_entrance_y',					// 14	float	m_corpseY entrance y coordinate in ghost mode	(in most cases = normal entrance)
 	15=> 'timeOfDayOverrIde',					// 15	uint32	m_timeOfDayOverrIde
 	16=> 'addon',								// 16	uint32	m_expansionId
-	17=> 'unkTime',								// 17	uint32	m_raIdOffset
+	17=> 'raidOffset',							// 17	uint32	m_raidOffset
 	18=> 'maxPlayers',							// 18	uint32	m_maxPlayers
 												// 19	uint32	new 4.0.0, mapId, related to phasing
 ),
@@ -790,7 +819,7 @@ $DBCstruct = array(
 	9 => array('ssdMultiplier',5),				// 9-13	uint32	Multiplier for ScalingStatDistribution
 	14=> array('armorMod',4),					// 14-17uint32	Armor for level
 	18=> array('armorMod2',4),					// 18-21uint32	Armor for level
-	22=> array('trash',24),						// 22-45uint32	
+												// 22-45uint32	
 												// 46	uint32	unk, probably also Armor for level (flag 0x80000?)
 ),
 'ScreenEffect' => array(), // rows: 119, cols: 10
@@ -869,7 +898,7 @@ $DBCstruct = array(
 'SoundProviderPreferences' => array(), // rows: 32, cols: 24
 'SpamMessages' => array(), // rows: 133, cols: 2
 'Spell' => array( // rows: 70447, cols: 48
-	0 => 'Id',									// 0	uint32	m_ID
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_ID
 	1 => 'Attributes',							// 1	uint32	m_attribute
 	2 => 'AttributesEx',						// 2	uint32	m_attributesEx
 	3 => 'AttributesEx2',						// 3	uint32	m_attributesExB
@@ -886,12 +915,12 @@ $DBCstruct = array(
 	14=> 'rangeIndex',							// 14	uint32	m_rangeIndex
 	15=> 'speed',								// 15	float	m_speed
 	16=> array('SpellVisual',2),				// 16-17uint32	m_spellVisualID
-	18=> 'SpellIconID',						// 18	uint32	m_spellIconID
+	18=> 'SpellIconID',							// 18	uint32	m_spellIconID
 	19=> 'activeIconID',						// 19	uint32	m_activeIconID
 	20=> 'SpellName',							// 20	string	string	m_name_lang
 	21=> 'Rank',								// 21	string	string	m_nameSubtext_lang
-	22=> 'Description',						// 22	string	m_description_lang not used
-	23=> 'ToolTip',							// 23	string	m_auraDescription_lang not used
+	22=> 'Description',							// 22	string	m_description_lang not used
+	23=> 'ToolTip',								// 23	string	m_auraDescription_lang not used
 	24=> 'SchoolMask',							// 24	uint32	m_schoolMask
 	25=> 'runeCostID',							// 25	uint32	m_runeCostID
 	26=> 'spellMissileID',						// 26	uint32	m_spellMissileID not used
@@ -900,21 +929,22 @@ $DBCstruct = array(
 												// 29	float	
 	30=> 'SpellScalingId',						// 30	uint32	SpellScaling.dbc
 	31=> 'SpellAuraOptionsId',					// 31	uint32	SpellAuraOptions.dbc
-	32=> 'SpellAuraRestrictionsId',			// 32	uint32	SpellAuraRestrictions.dbc
+	32=> 'SpellAuraRestrictionsId',				// 32	uint32	SpellAuraRestrictions.dbc
 	33=> 'SpellCastingRequirementsId',			// 33	uint32	SpellCastingRequirements.dbc
 	34=> 'SpellCategoriesId',					// 34	uint32	SpellCategories.dbc
-	35=> 'SpellClassOptionsId',				// 35	uint32	SpellClassOptions.dbc
+	35=> 'SpellClassOptionsId',					// 35	uint32	SpellClassOptions.dbc
 	36=> 'SpellCooldownsId',					// 36	uint32	SpellCooldowns.dbc
 												// 37	uint32	all zeros...
 	38=> 'SpellEquippedItemsId',				// 38	uint32	SpellEquippedItems.dbc
 	39=> 'SpellInterruptsId',					// 39	uint32	SpellInterrupts.dbc
 	40=> 'SpellLevelsId',						// 40	uint32	SpellLevels.dbc
 	41=> 'SpellPowerId',						// 41	uint32	SpellPower.dbc
-	42=> 'SpellReagentsId',					// 42	uint32	SpellReagents.dbc
+	42=> 'SpellReagentsId',						// 42	uint32	SpellReagents.dbc
 	43=> 'SpellShapeshiftId',					// 43	uint32	SpellShapeshift.dbc
 	44=> 'SpellTargetRestrictionsId',			// 44	uint32	SpellTargetRestrictions.dbc
 	45=> 'SpellTotemsId',						// 45	uint32	SpellTotems.dbc
-	46=> 'ResearchProject'						// 46	uint32	ResearchProject.dbc
+	46=> 'ResearchProject',						// 46	uint32	ResearchProject.dbc
+												// 47
 ),
 'SpellActivationOverlay' => array(), // rows: 81, cols: 11
 'SpellAuraOptions' => array( // rows: 5818, cols: 5
@@ -1011,6 +1041,7 @@ $DBCstruct = array(
 	21=> 'effectImplicitTargetB',				// 21	uint32	m_implicitTargetB
 	22=> 'effectSpellId',						// 22	uint32	new 4.0.0
 	23=> 'effectIndex'							// 23	uint32	new 4.0.0
+												// 24-26
 ),
 'SpellEffectCameraShakes' => array(), // rows: 41, cols: 4
 'SpellEquippedItems' => array( // rows: 2240, cols: 4
@@ -1053,8 +1084,8 @@ $DBCstruct = array(
 ),
 'SpellItemEnchantmentCondition' => array( // rows: 65, cols: 31
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_Id
-	1 => array('Color',5),						// 1-5	uint8	m_lt_operandType[5]
-	6 => array('LT_Operand',5),					// 6-10	uint32	m_lt_operand[5]
+	1 => array('LTOperandType',5),				// 1-5	uint8	m_lt_operandType[5]
+	6 => array('LTOperand',5),					// 6-10	uint32	m_lt_operand[5]
 	11=> array('Comparator',5),					// 11-15uint8	m_operator[5]
 	15=> array('CompareColor',5),				// 15-20uint8	m_rt_operandType[5]
 	21=> array('Value',5),						// 21-25uint32	m_rt_operand[5]
@@ -1066,7 +1097,11 @@ $DBCstruct = array(
 	2 => 'maxLevel',							// 2	uint32	m_maxLevel
 	3 => 'spellLevel'							// 3	uint32	m_spellLevel
 ),
-'SpellMechanic' => array(), // rows: 32, cols: 2(18)
+'SpellMechanic' => array( // rows: 32, cols: 2
+	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_id
+	1 => 'type'									// 1	string	m_name_lang
+
+),
 'SpellMissile' => array(), // rows: 174, cols: 15
 'SpellMissileMotion' => array(), // rows: 276, cols: 5
 'SpellPower' => array( // rows: 3919, cols: 7
@@ -1182,8 +1217,8 @@ $DBCstruct = array(
 	12=> 'DependsOnRank',						// 12	uint32	m_prereqRank
 												// 13-14		part of prev field
 	15=> 'needAddInSpellBook',				 	// 15	uint32	m_flags also need disable higest ranks on reset talent tree
-	16=> 'unk2',							 	// 16	uint32	m_requiredSpellID
-	17=> 'allowForPet',						// 17	uint64	m_categoryMask its a 64 bit mask for pet 1<<m_categoryEnumID in CreatureFamily.dbc
+	16=> 'requiredSpellID',					 	// 16	uint32	m_requiredSpellID
+	17=> 'allowForPet',							// 17	uint64	m_categoryMask its a 64 bit mask for pet 1<<m_categoryEnumID in CreatureFamily.dbc
 												// 18
 ),
 'TalentTab' => array( // rows: 33, cols: 11
@@ -1193,7 +1228,7 @@ $DBCstruct = array(
 	3 => 'ClassMask',							// 3	uint32	m_classMask
 	4 => 'petTalentMask',						// 4	uint32	m_petTalentMask
 	5 => 'tabpage',								// 5	uint32	m_orderIndex
-	6 => 'internalname',						// 6	char*	m_backgroundFile
+	6 => 'backgroundFile',						// 6	char*	m_backgroundFile
 	7 => 'description',							// 7	char*
 	8 => 'rolesMask',							// 8	uint32	4.0.0
 	9 => array('spellIds',2)					// 9-10	uint32	passive mastery bonus spells?
@@ -1371,13 +1406,13 @@ $DBCstruct = array(
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_ID
 	1 => 'map_id',							 	// 1	uint32	m_mapID
 	2 => 'area_id',								// 2	uint32	m_areaID index (continent 0 areas ignored)
-	3 => 'internal_name',						// 3	char*	m_areaName
-	4 => 'y1',									// 4	float	m_locLeft
-	5 => 'y2',									// 5	float	m_locRight
-	6 => 'x1',									// 6	float	m_locTop
-	7 => 'x2',									// 7	float	m_locBottom
-	8 => 'virtual_map_id',						// 8	int32	m_displayMapID -1 (map_id have correct map) other: virtual map where zone show (map_id - where zone in fact internally)
-	9 => 'dungeonMap_id',					 	// 9	int32	m_defaultDungeonFloor (DungeonMap.dbc)
+	3 => 'internalName',						// 3	char*	m_areaName
+	4 => 'locLeft',								// 4	float	m_locLeft
+	5 => 'locRight',							// 5	float	m_locRight
+	6 => 'locTop',								// 6	float	m_locTop
+	7 => 'locBottom',							// 7	float	m_locBottom
+	8 => 'virtualMapId',						// 8	int32	m_displayMapID -1 (map_id have correct map) other: virtual map where zone show (map_id - where zone in fact internally)
+	9 => 'dungeonMapId',					 	// 9	int32	m_defaultDungeonFloor (DungeonMap.dbc)
 	10=> 'someMapID',						 	// 10	uint32	m_parentWorldMapID
 												// 11			4.0.0
 ),
@@ -1386,7 +1421,7 @@ $DBCstruct = array(
 	0 => array('id',INDEX_PRIMORY_KEY),			// 0	uint32	m_ID
 	1 => 'worldMapAreaId',					 	// 1	uint32	m_mapAreaID (WorldMapArea.dbc)
 	2 => array('areatableID',4),				// 2-5	uint32	m_areaID
-	6 => 'internal_name',						// 6	char*	m_textureName
+	6 => 'textureName',							// 6	char*	m_textureName
 												// 7			m_textureWidth
 												// 8			m_textureHeight
 												// 9			m_offsetX

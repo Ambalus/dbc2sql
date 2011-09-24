@@ -33,6 +33,7 @@ class DBCparser
 	var $name = null;
 	var $format = '';
 	var $field = null;
+	var $header = null;
 	var $countRecords = 0;
 	var $countFields = 0;
 	var $sizeRecord = 0;
@@ -245,13 +246,7 @@ class DBCparser
 		$this->DB->query("DROP TABLE IF EXISTS ?#",'dbc_'.$this->name);
 		$this->DB->query($sql,'dbc_'.$this->name);
 
-		unset($collums);
-		unset($ittr);
-		unset($sql);
-		unset($field);
-		unset($temp_f);
-		unset($pkey);
-		unset($i);
+		unset($collums,$ittr,$sql,$field,$temp_f,$pkey,$i);
 	}
 
 	public function isValidFormatFile(){
@@ -360,6 +355,20 @@ class DBCparser
 			");
 			$this->_initDB_();
 		}
+		$result = $this->DB->selectRow("ANALYZE TABLE `_dbc_fields_`");
+		if($result['Msg_type'] == 'Error'){
+			$this->DB->query("
+				CREATE TABLE `_dbc_fields_` (
+				  `filename` varchar(120) DEFAULT NULL,
+				  `id` int(12) DEFAULT NULL,
+				  `field` varchar(120) DEFAULT NULL,
+				  `isKey` tinyint(11) DEFAULT NULL,
+				  `count` int(11) DEFAULT NULL,
+				  `type` varchar(120) DEFAULT NULL,
+				  `type_string` varchar(120) DEFAULT NULL
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8
+			");
+		}
 	}
 
 	private function writeDBCInfo(){
@@ -385,7 +394,10 @@ class DBCparser
 	}
 
 	private function _initDB_(){
-		include(FILE_FMT);
+		global $DBCfmt;
+		if(!isset($DBCfmt)){
+			include_once(FILE_FMT);
+		}
 		foreach($DBCfmt as $k => $v){
 			$this->DB->query("INSERT IGNORE INTO ?#(`file`,`format`) VALUES(?,?)",DB_TABLE_INFO,$k,$v);
 		}
