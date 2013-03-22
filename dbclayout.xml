@@ -42,12 +42,14 @@
 		<file name="ChatChannels"/>
 		<file name="ChatProfanity"/>
 		<file name="ChrClasses"/>
+		<file name="ChrClassesXPowerTypes"/>
 		<file name="ChrRaces"/>
 		<file name="CinematicCamera"/>
 		<file name="CinematicSequences"/>
 		<file name="CreatureDisplayInfo"/>
 		<file name="CreatureDisplayInfoExtra"/>
 		<file name="CreatureFamily"/>
+		<file name="CreatureImmunities"/>
 		<file name="CreatureModelData"/>
 		<file name="CreatureMovementInfo"/>
 		<file name="CreatureSoundData"/>
@@ -93,12 +95,17 @@
 		<file name="GroundEffectDoodad"/>
 		<file name="GroundEffectTexture"/>
 		<file name="GuildColorBackground"/>
+		<file name="GuildColorBorder"/>
 		<file name="GuildColorEmblem"/>
 		<file name="GuildPerkSpells"/>
 		<file name="HelmetGeosetVisData"/>
 		<file name="HolidayDescriptions"/>
 		<file name="HolidayNames"/>
 		<file name="Holidays"/>
+		<file name="ImportPriceArmor"/>
+		<file name="ImportPriceQuality"/>
+		<file name="ImportPriceShield"/>
+		<file name="ImportPriceWeapon"/>
 		<file name="Item"/>
 		<file name="ItemArmorQuality"/>
 		<file name="ItemArmorShield"/>
@@ -114,11 +121,14 @@
 		<file name="ItemDamageTwoHand"/>
 		<file name="ItemDamageTwoHandCaster"/>
 		<file name="ItemDamageWand"/>
+		<file name="ItemDisenchantLoot"/>
 		<file name="ItemDisplayInfo"/>
 		<file name="ItemExtendedCost"/>
 		<file name="ItemGroupSounds"/>
 		<file name="ItemLimitCategory"/>
+		<file name="ItemNameDescription"/>
 		<file name="ItemPetFood"/>
+		<file name="ItemPriceBase"/>
 		<file name="ItemPurchaseGroup"/>
 		<file name="ItemRandomProperties"/>
 		<file name="ItemRandomSuffix"/>
@@ -128,10 +138,16 @@
 		<file name="ItemSubClassMask"/>
 		<file name="ItemVisualEffects"/>
 		<file name="ItemVisuals"/>
+		<file name="JournalEncounter"/>
+		<file name="JournalEncounterCreature"/>
+		<file name="JournalEncounterItem"/>
+		<file name="JournalEncounterSection"/>
+		<file name="JournalInstance"/>
 		<file name="KeyChain"/>
 		<file name="LFGDungeonExpansion"/>
 		<file name="LFGDungeonGroup"/>
 		<file name="LFGDungeons"/>
+		<file name="LFGDungeonsGroupingmap"/>
 		<file name="LanguageWords"/>
 		<file name="Languages"/>
 		<file name="Light"/>
@@ -175,6 +191,7 @@
 		<file name="Phase"/>
 		<file name="PhaseShiftZoneSounds"/>
 		<file name="PhaseXPhaseGroup"/>
+		<file name="PlayerCondition"/>
 		<file name="PowerDisplay"/>
 		<file name="PvpDifficulty"/>
 		<file name="QuestFactionReward"/>
@@ -201,9 +218,12 @@
 		<file name="SkillRaceClassInfo"/>
 		<file name="SkillTiers"/>
 		<file name="SoundAmbience"/>
+		<file name="SoundAmbienceFlavor"/>
+		<file name="SoundEmitterPillPoints"/>
 		<file name="SoundEmitters"/>
 		<file name="SoundEntries"/>
 		<file name="SoundEntriesAdvanced"/>
+		<file name="SoundEntriesFallbacks"/>
 		<file name="SoundFilter"/>
 		<file name="SoundFilterElem"/>
 		<file name="SoundProviderPreferences"/>
@@ -212,6 +232,8 @@
 		<file name="SpellActivationOverlay"/>
 		<file name="SpellAuraOptions"/>
 		<file name="SpellAuraRestrictions"/>
+		<file name="SpellAuraVisXTalentTab"/>
+		<file name="SpellAuraVisibility"/>
 		<file name="SpellCastTimes"/>
 		<file name="SpellCastingRequirements"/>
 		<file name="SpellCategories"/>
@@ -245,6 +267,7 @@
 		<file name="SpellScaling"/>
 		<file name="SpellShapeshift"/>
 		<file name="SpellShapeshiftForm"/>
+		<file name="SpellSpecialUnitEffect"/>
 		<file name="SpellTargetRestrictions"/>
 		<file name="SpellTotems"/>
 		<file name="SpellVisual"/>
@@ -304,24 +327,24 @@
 		<file name="gtChanceToSpellCritBase"/>
 		<file name="gtCombatRatings"/>
 		<file name="gtNPCManaCostScaler"/>
+		<file name="gtOCTBaseHPByClass"/>
+		<file name="gtOCTBaseMPByClass"/>
 		<file name="gtOCTClassCombatRatingScalar"/>
+		<file name="gtOCTHpPerStamina"/>
 		<file name="gtOCTRegenMP"/>
 		<file name="gtRegenMPPerSpt"/>
 		<file name="gtSpellScaling"/>
 		<file name="world_PVP_Area"/>
 	</DBCFilesBase>
 	<DBCFilesPatch build="13164"/>
-	<DBCFilesPatch build="13287">
-		<file name="GuildColorBorder"/>
-	</DBCFilesPatch>
-	<DBCFilesPatch build="13596">
-		<file name="ItemDisenchantLoot"/>
-	</DBCFilesPatch>
+	<DBCFilesPatch build="13287"/>
+	<DBCFilesPatch build="13596"/>
 	<DBCFilesPatch build="13914"/>
 	<DBCFilesPatch build="14007"/>
-	<DBCFilesPatch build="14333">
-		<file name="CreatureImmunities"/>
-	</DBCFilesPatch>
-	<DBCFilesPatch build="14480"/>
+	<DBCFilesPatch build="14333"/>
 	<DBCFilesPatch build="14545"/>
+	<DBCFilesPatch build="14946"/>
+	<DBCFilesPatch build="15005"/>
+	<DBCFilesPatch build="15050"/>
+	<DBCFilesPatch build="15211"/>
 </DBCFilesClient>

@@ -200,6 +200,7 @@ $db_rows['incorrect_size'] =  $t;
 		<input type="submit" name="update_struct" value="update_struct" />
 		<input type="submit" name="listing_dbc" value="listing_dbc" disabled />
 		<input type="submit" name="check_struct_files" value="check_struct_files 400" />
+		<input type="submit" name="dbclayout" value="dbclayout" />
 	</form>
 </div>
 <div>
