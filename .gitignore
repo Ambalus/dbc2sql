@@ -1,0 +1,8 @@
+composer.lock
+composer.phar
+package*.tar
+packages.json
+phpunit.xml
+/vendor/*
+/DBFilesClient/*.dbc
+/DBFilesClient/*.db2

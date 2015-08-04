@@ -1,0 +1,4 @@
+<Files "*">
+Options -Indexes
+Deny from all
+</Files>

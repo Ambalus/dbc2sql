@@ -1,0 +1,13 @@
+{
+    "require": {
+        "dklab/dbsimple": "dev-master",
+        "symfony/filesystem": "^2.7",
+        "jms/serializer": "^1.0",
+        "symfony/finder": "^2.7"
+    },
+	"autoload" : {
+		"psr-4" : {
+			"": "framework/"
+		}
+	}
+}
