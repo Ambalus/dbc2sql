@@ -1,5 +1,14 @@
 {
+    "name": "ambalus/dbc2sql",
+    "type": "library",
+    "description": "Parser DBC to SQL",
+    "keywords": ["dbc", "database","WDBC"],
+    "homepage": "https://github.com/Ambalus/dbc2sql",
+    "authors": [
+        {"name": "Sergey Bondarenko", "email": "sergikbondarenko@yandex.ru"}
+    ],
     "require": {
+        "php": ">=5.3.4",
         "dklab/dbsimple": "dev-master",
         "symfony/filesystem": "^2.7",
         "jms/serializer": "^1.0",
@@ -7,7 +16,7 @@
     },
 	"autoload" : {
 		"psr-4" : {
-			"": "framework/"
+			"": "src/"
 		}
 	}
 }
